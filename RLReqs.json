@@ -1,0 +1,591 @@
+[
+    {
+        "reqid": "R1_Instantiated",
+        "parent_reqid": "",
+        "project": "RL",
+        "rationale": "whenever ",
+        "comments": "",
+        "fulltext": "whenever (cRL >= tS) & (bigT <= TMAX) RLAgent shall immediately satisfy chooseAction & ((bigT+(hMax - c)*ts) <= TMAX)",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "noTrigger",
+            "timing": "immediately",
+            "response": "satisfaction",
+            "variables": [
+                "cRL",
+                "tS",
+                "bigT",
+                "TMAX",
+                "chooseAction",
+                "hMax",
+                "c",
+                "ts"
+            ],
+            "qualifier_word": "whenever",
+            "pre_condition": "(( cRL >= tS ) & ( bigT <= TMAX ))",
+            "regular_condition": "(( cRL >= tS ) & ( bigT <= TMAX ))",
+            "conditionTextRange": [
+                0,
+                36
+            ],
+            "component_name": "RLAgent",
+            "componentTextRange": [
+                38,
+                44
+            ],
+            "timingTextRange": [
+                52,
+                62
+            ],
+            "post_condition": "(chooseAction & ( ( bigT + ( hMax - c ) * ts ) <= TMAX ))",
+            "responseTextRange": [
+                64,
+                116
+            ],
+            "diagramVariables": "CC = <b><i>(( cRL >= tS ) & ( bigT <= TMAX ))</i></b>, Response = <b><i>(chooseAction & ( ( bigT + ( hMax - c ) * ts ) <= TMAX ))</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cRL >= tS ) & ( bigT <= TMAX ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_ft": "BAD_FT",
+            "regular_condition_unexp_pt": "((cRL >= tS) & (bigT <= TMAX))",
+            "regular_condition_unexp_ft": "((cRL >= tS) & (bigT <= TMAX))",
+            "regular_condition_SMV_pt": "((cRL >= tS) & (bigT <= TMAX))",
+            "regular_condition_SMV_ft": "((cRL >= tS) & (bigT <= TMAX))",
+            "post_condition_unexp_pt": "(chooseAction & ((bigT + ((hMax - c) * ts)) <= TMAX))",
+            "post_condition_unexp_ft": "(chooseAction & ((bigT + ((hMax - c) * ts)) <= TMAX))",
+            "post_condition_SMV_pt": "(chooseAction & ((bigT + ((hMax - c) * ts)) <= TMAX))",
+            "post_condition_SMV_ft": "(chooseAction & ((bigT + ((hMax - c) * ts)) <= TMAX))",
+            "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
+            "ft": "(LAST V (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & ((bigT + ((hMax - c) * ts)) <= TMAX))))",
+            "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
+            "pt": "(H (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & ((bigT + ((hMax - c) * ts)) <= TMAX))))",
+            "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
+            "ptExpanded": "(H (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & ((bigT + ((hMax - c) * ts)) <= TMAX))))",
+            "CoCoSpecCode": "H((((cRL >= tS) and (bigT <= TMAX)) => (chooseAction and ((bigT + ((hMax - c) * ts)) <= TMAX))))",
+            "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftExpandedUnoptimized": "(LAST V (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & ((bigT + ((hMax - c) * ts)) <= TMAX))))",
+            "ftExpanded": "(LAST V (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & ((bigT + ((hMax - c) * ts)) <= TMAX))))",
+            "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftInfAUExpanded": "(G (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & ((bigT + ((hMax - c) * ts)) <= TMAX))))",
+            "component": "RLAgent"
+        },
+        "_id": "750e4f80-c74f-11ee-bfe9-8100f26c254d"
+    },
+    {
+        "reqid": "R5_PATTERN",
+        "parent_reqid": "",
+        "project": "RL",
+        "rationale": "whenever (cRL >= tS) & (var ~ threshold) RLAgent shall immediately satisfy chooseAction & (var+wcreaction(state,action,tS) ~ threshold)",
+        "comments": "",
+        "fulltext": "whenever (cRL >= tS) & (var <= threshold) RLAgent shall immediately satisfy chooseAction & (var+wcreaction(state,action,tS) <= threshold)",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "noTrigger",
+            "timing": "immediately",
+            "response": "satisfaction",
+            "variables": [
+                "cRL",
+                "tS",
+                "var",
+                "threshold",
+                "chooseAction",
+                "wcreaction",
+                "state",
+                "action"
+            ],
+            "qualifier_word": "whenever",
+            "pre_condition": "(( cRL >= tS ) & ( var <= threshold ))",
+            "regular_condition": "(( cRL >= tS ) & ( var <= threshold ))",
+            "conditionTextRange": [
+                0,
+                40
+            ],
+            "component_name": "RLAgent",
+            "componentTextRange": [
+                42,
+                48
+            ],
+            "timingTextRange": [
+                56,
+                66
+            ],
+            "post_condition": "(chooseAction & ( var + wcreaction ( state , action , tS ) <= threshold ))",
+            "responseTextRange": [
+                68,
+                136
+            ],
+            "diagramVariables": "CC = <b><i>(( cRL >= tS ) & ( var <= threshold ))</i></b>, Response = <b><i>(chooseAction & ( var + wcreaction ( state , action , tS ) <= threshold ))</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cRL >= tS ) & ( var <= threshold ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_ft": "BAD_FT",
+            "regular_condition_unexp_pt": "((cRL >= tS) & (var <= threshold))",
+            "regular_condition_unexp_ft": "((cRL >= tS) & (var <= threshold))",
+            "regular_condition_SMV_pt": "((cRL >= tS) & (var <= threshold))",
+            "regular_condition_SMV_ft": "((cRL >= tS) & (var <= threshold))",
+            "post_condition_unexp_pt": "(chooseAction & ((var + wcreaction(state,action,tS)) <= threshold))",
+            "post_condition_unexp_ft": "(chooseAction & ((var + wcreaction(state,action,tS)) <= threshold))",
+            "post_condition_SMV_pt": "(chooseAction & ((var + wcreaction(state,action,tS)) <= threshold))",
+            "post_condition_SMV_ft": "(chooseAction & ((var + wcreaction(state,action,tS)) <= threshold))",
+            "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
+            "ft": "(LAST V (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,tS)) <= threshold))))",
+            "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
+            "pt": "(H (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,tS)) <= threshold))))",
+            "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
+            "ptExpanded": "(H (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,tS)) <= threshold))))",
+            "CoCoSpecCode": "H((((cRL >= tS) and (var <= threshold)) => (chooseAction and ((var + wcreaction(state,action,tS)) <= threshold))))",
+            "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftExpandedUnoptimized": "(LAST V (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,tS)) <= threshold))))",
+            "ftExpanded": "(LAST V (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,tS)) <= threshold))))",
+            "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftInfAUExpanded": "(G (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,tS)) <= threshold))))",
+            "component": "RLAgent"
+        },
+        "_id": "750e4f81-c74f-11ee-bfe9-8100f26c254d"
+    },
+    {
+        "reqid": "R5_INSTANTIATED",
+        "parent_reqid": "",
+        "project": "RL",
+        "rationale": "whenever (cRL >= tS) & (T <= TMAX) RLAgent shall immediately satisfy chooseAction & (hMax-c)*(tS) <= TMAX)",
+        "comments": "",
+        "fulltext": "whenever (cRL >= tS) & (bigT <= TMAX) RLAgent shall immediately satisfy chooseAction & (hMax - c) *(tS) <= TMAX",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "noTrigger",
+            "timing": "immediately",
+            "response": "satisfaction",
+            "variables": [
+                "cRL",
+                "tS",
+                "bigT",
+                "TMAX",
+                "chooseAction",
+                "hMax",
+                "c"
+            ],
+            "qualifier_word": "whenever",
+            "pre_condition": "(( cRL >= tS ) & ( bigT <= TMAX ))",
+            "regular_condition": "(( cRL >= tS ) & ( bigT <= TMAX ))",
+            "conditionTextRange": [
+                0,
+                36
+            ],
+            "component_name": "RLAgent",
+            "componentTextRange": [
+                38,
+                44
+            ],
+            "timingTextRange": [
+                52,
+                62
+            ],
+            "post_condition": "(chooseAction & ( hMax - c ) * ( tS ) <= TMAX)",
+            "responseTextRange": [
+                64,
+                110
+            ],
+            "diagramVariables": "CC = <b><i>(( cRL >= tS ) & ( bigT <= TMAX ))</i></b>, Response = <b><i>(chooseAction & ( hMax - c ) * ( tS ) <= TMAX)</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cRL >= tS ) & ( bigT <= TMAX ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_ft": "BAD_FT",
+            "regular_condition_unexp_pt": "((cRL >= tS) & (bigT <= TMAX))",
+            "regular_condition_unexp_ft": "((cRL >= tS) & (bigT <= TMAX))",
+            "regular_condition_SMV_pt": "((cRL >= tS) & (bigT <= TMAX))",
+            "regular_condition_SMV_ft": "((cRL >= tS) & (bigT <= TMAX))",
+            "post_condition_unexp_pt": "(chooseAction & (((hMax - c) * tS) <= TMAX))",
+            "post_condition_unexp_ft": "(chooseAction & (((hMax - c) * tS) <= TMAX))",
+            "post_condition_SMV_pt": "(chooseAction & (((hMax - c) * tS) <= TMAX))",
+            "post_condition_SMV_ft": "(chooseAction & (((hMax - c) * tS) <= TMAX))",
+            "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
+            "ft": "(LAST V (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & (((hMax - c) * tS) <= TMAX))))",
+            "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
+            "pt": "(H (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & (((hMax - c) * tS) <= TMAX))))",
+            "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
+            "ptExpanded": "(H (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & (((hMax - c) * tS) <= TMAX))))",
+            "CoCoSpecCode": "H((((cRL >= tS) and (bigT <= TMAX)) => (chooseAction and (((hMax - c) * tS) <= TMAX))))",
+            "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftExpandedUnoptimized": "(LAST V (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & (((hMax - c) * tS) <= TMAX))))",
+            "ftExpanded": "(LAST V (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & (((hMax - c) * tS) <= TMAX))))",
+            "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftInfAUExpanded": "(G (((cRL >= tS) & (bigT <= TMAX)) -> (chooseAction & (((hMax - c) * tS) <= TMAX))))",
+            "component": "RLAgent"
+        },
+        "_id": "750e4f82-c74f-11ee-bfe9-8100f26c254d"
+    },
+    {
+        "reqid": "R3_PATTERN",
+        "parent_reqid": "",
+        "project": "RL",
+        "rationale": "The RL controller maintains the safety threshold, if it maintains the safety threshold initially and then chooses an action in each discrete time step where the worst case reaction of the overall system within one sample time still maintains the safety threshold.\n\nThis would be the global safety property",
+        "comments": "",
+        "fulltext": "System shall always satisfy maintainThreshold",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "null",
+            "timing": "always",
+            "response": "satisfaction",
+            "variables": [
+                "maintainThreshold"
+            ],
+            "component_name": "System",
+            "componentTextRange": [
+                0,
+                5
+            ],
+            "timingTextRange": [
+                13,
+                18
+            ],
+            "post_condition": "(maintainThreshold)",
+            "responseTextRange": [
+                20,
+                44
+            ],
+            "diagramVariables": "Response = <b><i>(maintainThreshold)</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval.\nREQUIRES: for every trigger, RES must hold at all time points between (and including) the trigger and the end of the interval.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_null_always_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_coco": "BAD_COCO",
+            "scope_mode_ft": "BAD_FT",
+            "post_condition_unexp_pt": "maintainThreshold",
+            "post_condition_unexp_ft": "maintainThreshold",
+            "post_condition_SMV_pt": "maintainThreshold",
+            "post_condition_SMV_ft": "maintainThreshold",
+            "post_condition_coco_smv": "maintainThreshold",
+            "post_condition_coco": "maintainThreshold",
+            "ft_fetched": "(LAST V $post_condition_unexp_ft$)",
+            "ft": "(LAST V maintainThreshold)",
+            "pt_fetched": "(H $post_condition_unexp_pt$)",
+            "pt": "(H maintainThreshold)",
+            "ptExpanded_fetched": "(H $post_condition_SMV_pt$)",
+            "ptExpanded": "(H maintainThreshold)",
+            "ptFinBtwExpanded_fetched": "(H $post_condition_SMV_pt$)",
+            "ptFinBtwExpanded": "(H maintainThreshold)",
+            "ftExpanded_fetched": "(LAST V $post_condition_SMV_ft$)",
+            "ftExpanded": "(LAST V maintainThreshold)",
+            "ftInfAUExpanded_fetched": "(G $post_condition_SMV_ft$)",
+            "ftInfAUExpanded": "(G maintainThreshold)",
+            "ftInfBtwExpanded_fetched": "(G $post_condition_SMV_ft$)",
+            "ftInfBtwExpanded": "(G maintainThreshold)",
+            "ftFinBtwExpanded_fetched": "(LAST V $post_condition_SMV_ft$)",
+            "ftFinBtwExpanded": "(LAST V maintainThreshold)",
+            "CoCoSpecCode_fetched": "(H($post_condition_coco$))",
+            "CoCoSpecCode": "(H(maintainThreshold))",
+            "component": "System"
+        },
+        "_id": "750e4f83-c74f-11ee-bfe9-8100f26c254d"
+    },
+    {
+        "reqid": "R2_PATTERN",
+        "parent_reqid": "",
+        "project": "RL",
+        "rationale": "use whenever for R1 and R2",
+        "comments": "",
+        "fulltext": "whenever (cRL < tS) RLAgent shall immediately satisfy maintainAction ",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "noTrigger",
+            "timing": "immediately",
+            "response": "satisfaction",
+            "variables": [
+                "cRL",
+                "tS",
+                "maintainAction"
+            ],
+            "qualifier_word": "whenever",
+            "pre_condition": "(( cRL < tS ))",
+            "regular_condition": "(( cRL < tS ))",
+            "conditionTextRange": [
+                0,
+                18
+            ],
+            "component_name": "RLAgent",
+            "componentTextRange": [
+                20,
+                26
+            ],
+            "timingTextRange": [
+                34,
+                44
+            ],
+            "post_condition": "(maintainAction)",
+            "responseTextRange": [
+                46,
+                67
+            ],
+            "diagramVariables": "CC = <b><i>(( cRL < tS ))</i></b>, Response = <b><i>(maintainAction)</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cRL < tS ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_ft": "BAD_FT",
+            "regular_condition_unexp_pt": "(cRL < tS)",
+            "regular_condition_unexp_ft": "(cRL < tS)",
+            "regular_condition_SMV_pt": "(cRL < tS)",
+            "regular_condition_SMV_ft": "(cRL < tS)",
+            "post_condition_unexp_pt": "maintainAction",
+            "post_condition_unexp_ft": "maintainAction",
+            "post_condition_SMV_pt": "maintainAction",
+            "post_condition_SMV_ft": "maintainAction",
+            "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
+            "ft": "(LAST V ((cRL < tS) -> maintainAction))",
+            "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
+            "pt": "(H ((cRL < tS) -> maintainAction))",
+            "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
+            "ptExpanded": "(H ((cRL < tS) -> maintainAction))",
+            "CoCoSpecCode": "H(((cRL < tS) => maintainAction))",
+            "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftExpandedUnoptimized": "(LAST V ((cRL < tS) -> maintainAction))",
+            "ftExpanded": "(LAST V ((cRL < tS) -> maintainAction))",
+            "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftInfAUExpanded": "(G ((cRL < tS) -> maintainAction))",
+            "component": "RLAgent"
+        },
+        "_id": "750e4f84-c74f-11ee-bfe9-8100f26c254d"
+    },
+    {
+        "reqid": "R4_INSTANTIATED",
+        "parent_reqid": "",
+        "project": "RL",
+        "rationale": "whenever (cRL >= tS) & (T > TMAX) RLAgent shall immediately satisfy chooseAction & (hMax-c)*(tD,Last+tR,Max-t) <= TMAX)",
+        "comments": "",
+        "fulltext": "whenever (cRL >= tS) & (bigT > TMAX) RLAgent shall immediately satisfy chooseAction & (hMax - c)*((tDLast+tRMax) - t) <= TMAX",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "noTrigger",
+            "timing": "immediately",
+            "response": "satisfaction",
+            "variables": [
+                "cRL",
+                "tS",
+                "bigT",
+                "TMAX",
+                "chooseAction",
+                "hMax",
+                "c",
+                "tDLast",
+                "tRMax",
+                "t"
+            ],
+            "qualifier_word": "whenever",
+            "pre_condition": "(( cRL >= tS ) & ( bigT > TMAX ))",
+            "regular_condition": "(( cRL >= tS ) & ( bigT > TMAX ))",
+            "conditionTextRange": [
+                0,
+                35
+            ],
+            "component_name": "RLAgent",
+            "componentTextRange": [
+                37,
+                43
+            ],
+            "timingTextRange": [
+                51,
+                61
+            ],
+            "post_condition": "(chooseAction & ( hMax - c ) * ( ( tDLast + tRMax ) - t ) <= TMAX)",
+            "responseTextRange": [
+                63,
+                124
+            ],
+            "diagramVariables": "CC = <b><i>(( cRL >= tS ) & ( bigT > TMAX ))</i></b>, Response = <b><i>(chooseAction & ( hMax - c ) * ( ( tDLast + tRMax ) - t ) <= TMAX)</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cRL >= tS ) & ( bigT > TMAX ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_ft": "BAD_FT",
+            "regular_condition_unexp_pt": "((cRL >= tS) & (bigT > TMAX))",
+            "regular_condition_unexp_ft": "((cRL >= tS) & (bigT > TMAX))",
+            "regular_condition_SMV_pt": "((cRL >= tS) & (bigT > TMAX))",
+            "regular_condition_SMV_ft": "((cRL >= tS) & (bigT > TMAX))",
+            "post_condition_unexp_pt": "(chooseAction & (((hMax - c) * ((tDLast + tRMax) - t)) <= TMAX))",
+            "post_condition_unexp_ft": "(chooseAction & (((hMax - c) * ((tDLast + tRMax) - t)) <= TMAX))",
+            "post_condition_SMV_pt": "(chooseAction & (((hMax - c) * ((tDLast + tRMax) - t)) <= TMAX))",
+            "post_condition_SMV_ft": "(chooseAction & (((hMax - c) * ((tDLast + tRMax) - t)) <= TMAX))",
+            "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
+            "ft": "(LAST V (((cRL >= tS) & (bigT > TMAX)) -> (chooseAction & (((hMax - c) * ((tDLast + tRMax) - t)) <= TMAX))))",
+            "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
+            "pt": "(H (((cRL >= tS) & (bigT > TMAX)) -> (chooseAction & (((hMax - c) * ((tDLast + tRMax) - t)) <= TMAX))))",
+            "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
+            "ptExpanded": "(H (((cRL >= tS) & (bigT > TMAX)) -> (chooseAction & (((hMax - c) * ((tDLast + tRMax) - t)) <= TMAX))))",
+            "CoCoSpecCode": "H((((cRL >= tS) and (bigT > TMAX)) => (chooseAction and (((hMax - c) * ((tDLast + tRMax) - t)) <= TMAX))))",
+            "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftExpandedUnoptimized": "(LAST V (((cRL >= tS) & (bigT > TMAX)) -> (chooseAction & (((hMax - c) * ((tDLast + tRMax) - t)) <= TMAX))))",
+            "ftExpanded": "(LAST V (((cRL >= tS) & (bigT > TMAX)) -> (chooseAction & (((hMax - c) * ((tDLast + tRMax) - t)) <= TMAX))))",
+            "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftInfAUExpanded": "(G (((cRL >= tS) & (bigT > TMAX)) -> (chooseAction & (((hMax - c) * ((tDLast + tRMax) - t)) <= TMAX))))",
+            "component": "RLAgent"
+        },
+        "_id": "750e4f85-c74f-11ee-bfe9-8100f26c254d"
+    },
+    {
+        "reqid": "R1_Pattern",
+        "parent_reqid": "",
+        "project": "RL",
+        "rationale": "whenever the sample time is reached (cRL >= tS) and the threshold is maintained the RL agent chooses an action that ensures  that the worst case reaction of the overall system within one sample time still maintains the safety threshold.",
+        "comments": "",
+        "fulltext": "whenever (cRL >= tS) & (var <= threshold) RLAgent shall immediately satisfy chooseAction & (var+wcreaction(state,action,ts) <= threshold)",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "noTrigger",
+            "timing": "immediately",
+            "response": "satisfaction",
+            "variables": [
+                "cRL",
+                "tS",
+                "var",
+                "threshold",
+                "chooseAction",
+                "wcreaction",
+                "state",
+                "action",
+                "ts"
+            ],
+            "qualifier_word": "whenever",
+            "pre_condition": "(( cRL >= tS ) & ( var <= threshold ))",
+            "regular_condition": "(( cRL >= tS ) & ( var <= threshold ))",
+            "conditionTextRange": [
+                0,
+                40
+            ],
+            "component_name": "RLAgent",
+            "componentTextRange": [
+                42,
+                48
+            ],
+            "timingTextRange": [
+                56,
+                66
+            ],
+            "post_condition": "(chooseAction & ( var + wcreaction ( state , action , ts ) <= threshold ))",
+            "responseTextRange": [
+                68,
+                136
+            ],
+            "diagramVariables": "CC = <b><i>(( cRL >= tS ) & ( var <= threshold ))</i></b>, Response = <b><i>(chooseAction & ( var + wcreaction ( state , action , ts ) <= threshold ))</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cRL >= tS ) & ( var <= threshold ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_ft": "BAD_FT",
+            "regular_condition_unexp_pt": "((cRL >= tS) & (var <= threshold))",
+            "regular_condition_unexp_ft": "((cRL >= tS) & (var <= threshold))",
+            "regular_condition_SMV_pt": "((cRL >= tS) & (var <= threshold))",
+            "regular_condition_SMV_ft": "((cRL >= tS) & (var <= threshold))",
+            "post_condition_unexp_pt": "(chooseAction & ((var + wcreaction(state,action,ts)) <= threshold))",
+            "post_condition_unexp_ft": "(chooseAction & ((var + wcreaction(state,action,ts)) <= threshold))",
+            "post_condition_SMV_pt": "(chooseAction & ((var + wcreaction(state,action,ts)) <= threshold))",
+            "post_condition_SMV_ft": "(chooseAction & ((var + wcreaction(state,action,ts)) <= threshold))",
+            "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
+            "ft": "(LAST V (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,ts)) <= threshold))))",
+            "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
+            "pt": "(H (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,ts)) <= threshold))))",
+            "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
+            "ptExpanded": "(H (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,ts)) <= threshold))))",
+            "CoCoSpecCode": "H((((cRL >= tS) and (var <= threshold)) => (chooseAction and ((var + wcreaction(state,action,ts)) <= threshold))))",
+            "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftExpandedUnoptimized": "(LAST V (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,ts)) <= threshold))))",
+            "ftExpanded": "(LAST V (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,ts)) <= threshold))))",
+            "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftInfAUExpanded": "(G (((cRL >= tS) & (var <= threshold)) -> (chooseAction & ((var + wcreaction(state,action,ts)) <= threshold))))",
+            "component": "RLAgent"
+        },
+        "_id": "750e4f86-c74f-11ee-bfe9-8100f26c254d"
+    },
+    {
+        "reqid": "R4_PATTERN",
+        "parent_reqid": "",
+        "project": "RL",
+        "rationale": "whenever (cRL >= tS) & !(var ~ threshold) RLAgent shall immediately satisfy chooseAction & (var+wcreaction(state,action,tR) ~ threshold)",
+        "comments": "",
+        "fulltext": "whenever (cRL >= tS) & !(var <= threshold) RLAgent shall immediately satisfy chooseAction & (var+wcreaction(state,action,tR) <= threshold)",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "noTrigger",
+            "timing": "immediately",
+            "response": "satisfaction",
+            "variables": [
+                "cRL",
+                "tS",
+                "var",
+                "threshold",
+                "chooseAction",
+                "wcreaction",
+                "state",
+                "action",
+                "tR"
+            ],
+            "qualifier_word": "whenever",
+            "pre_condition": "(( cRL >= tS ) & ! ( var <= threshold ))",
+            "regular_condition": "(( cRL >= tS ) & ! ( var <= threshold ))",
+            "conditionTextRange": [
+                0,
+                41
+            ],
+            "component_name": "RLAgent",
+            "componentTextRange": [
+                43,
+                49
+            ],
+            "timingTextRange": [
+                57,
+                67
+            ],
+            "post_condition": "(chooseAction & ( var + wcreaction ( state , action , tR ) <= threshold ))",
+            "responseTextRange": [
+                69,
+                137
+            ],
+            "diagramVariables": "CC = <b><i>(( cRL >= tS ) & ! ( var <= threshold ))</i></b>, Response = <b><i>(chooseAction & ( var + wcreaction ( state , action , tR ) <= threshold ))</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cRL >= tS ) & ! ( var <= threshold ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_ft": "BAD_FT",
+            "regular_condition_unexp_pt": "((cRL >= tS) & (! (var <= threshold)))",
+            "regular_condition_unexp_ft": "((cRL >= tS) & (! (var <= threshold)))",
+            "regular_condition_SMV_pt": "((cRL >= tS) & (! (var <= threshold)))",
+            "regular_condition_SMV_ft": "((cRL >= tS) & (! (var <= threshold)))",
+            "post_condition_unexp_pt": "(chooseAction & ((var + wcreaction(state,action,tR)) <= threshold))",
+            "post_condition_unexp_ft": "(chooseAction & ((var + wcreaction(state,action,tR)) <= threshold))",
+            "post_condition_SMV_pt": "(chooseAction & ((var + wcreaction(state,action,tR)) <= threshold))",
+            "post_condition_SMV_ft": "(chooseAction & ((var + wcreaction(state,action,tR)) <= threshold))",
+            "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
+            "ft": "(LAST V (((cRL >= tS) & (! (var <= threshold))) -> (chooseAction & ((var + wcreaction(state,action,tR)) <= threshold))))",
+            "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
+            "pt": "(H (((cRL >= tS) & (! (var <= threshold))) -> (chooseAction & ((var + wcreaction(state,action,tR)) <= threshold))))",
+            "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
+            "ptExpanded": "(H (((cRL >= tS) & (! (var <= threshold))) -> (chooseAction & ((var + wcreaction(state,action,tR)) <= threshold))))",
+            "CoCoSpecCode": "H((((cRL >= tS) and not ((var <= threshold))) => (chooseAction and ((var + wcreaction(state,action,tR)) <= threshold))))",
+            "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftExpandedUnoptimized": "(LAST V (((cRL >= tS) & (! (var <= threshold))) -> (chooseAction & ((var + wcreaction(state,action,tR)) <= threshold))))",
+            "ftExpanded": "(LAST V (((cRL >= tS) & (! (var <= threshold))) -> (chooseAction & ((var + wcreaction(state,action,tR)) <= threshold))))",
+            "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftInfAUExpanded": "(G (((cRL >= tS) & (! (var <= threshold))) -> (chooseAction & ((var + wcreaction(state,action,tR)) <= threshold))))",
+            "component": "RLAgent"
+        },
+        "_id": "750e4f87-c74f-11ee-bfe9-8100f26c254d"
+    }
+]
