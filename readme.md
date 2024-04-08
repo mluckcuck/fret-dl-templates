@@ -7,6 +7,7 @@ The Dynamic Logic Temapltes for [FRET](https://github.com/NASA-SW-VnV/fret).
 
 * `basicTemplates.js` - An updated version of a file distributed with FRET. The update includes our new template file into the building of the template list
 * `dlTemplates.js` - The new template file containing the definitions of the Dynamic Logic Templates
+* `RLReqs.json` - a demo  requirements set showing a general template and an instantiated example of the template. 
 
 ## Installation
 
