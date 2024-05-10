@@ -84,6 +84,7 @@ ed.addOption("threshold", "var < threshold", "var less than threshold");
 ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold");
 
 ed.addExample("[T <= TMAX]");
+dlTemplates.push(ed.createFinalTemplateObject());
 
 // =========================== Contract Threshold (also was R1/threshold1)
 
@@ -91,8 +92,7 @@ ed.newTemplate("template-rl-contractThreshold", "RL: Contract Threshold");
 ed.templateSummary("Whenever the sample time is reacheed (cRL >= tS) and the threshold is maintained, \
 	the RL agent chooses and action that ensures that the worst case reaction of the overall system, \
 	within one sample time still maintains the safety threshold.");
-ed.templateStructure("when ([clockTime] >= [sampleTime]) RLAgent shall immediately satisfy ([threshold]) => \
-	([var] + [worst case reaction] ) [thresholdComparison]");
+ed.templateStructure("when ([clockTime] >= [sampleTime]) RLAgent shall immediately satisfy ([threshold]) => ([var] + [worst case reaction] ) [thresholdComparison]");
 
 
 ed.fieldDescription("clockTime", "The clock's time.");
@@ -144,13 +144,13 @@ ed.addOption("threshold", "var < threshold", "var less than threshold");
 ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold");
 
 ed.addExample("[T <= TMAX]");
+dlTemplates.push(ed.createFinalTemplateObject());
 
 //=============================== Contract Recovery (was R4/recovery1)
 
 ed.newTemplate("template-rl-contractRecovery1", "RL: Contract Recovery 1")
 ed.templateSummary("If the threashold is breached, then??")
-ed.templateStructure("whenever ([clockTime] >= [sampleTime]) RLAgent shall immediately satisfy\
- & !([threshold]) => ([var] + [worst case reaction] [thresholdComparison])");
+ed.templateStructure("whenever ([clockTime] >= [sampleTime]) RLAgent shall immediately satisfy & !([threshold]) => ([var] + [worst case reaction] [thresholdComparison])");
 
 ed.fieldDescription("clockTime", "The clock's time.");
 ed.addOption("clockTime", "cRL", "Replace with clock variable name.");
@@ -186,8 +186,7 @@ dlTemplates.push(ed.createFinalTemplateObject())
 
 ed.newTemplate("template-rl-contractRecovery2", "RL: Contract Recovery 2");
 ed.templateSummary("If the threashold is not breached, then...?");
-ed.templateStructure("whenever ([clockTime] >= [sampleTime]) RLAgent shall immediately\
- satisfy ([threshold]) => ([var] + [worst case reaction]) [thresholdComparison])");
+ed.templateStructure("whenever ([clockTime] >= [sampleTime]) RLAgent shall immediately satisfy ([threshold]) => ([var] + [worst case reaction]) [thresholdComparison])");
 
 
 ed.fieldDescription("clockTime", "The clock's time.");
@@ -237,11 +236,11 @@ ed.fieldDescription("degradedService", "degradedService");
 ed.addOption("degradedService", "degradedService", "Replace with variable representing the degraded service.")
 
 ed.addExample("[T <= TMAX] [action] [degradedService]");
-
+dlTemplates.push(ed.createFinalTemplateObject());
 
 // =============================== Contract Resiliance (was R6/resiliance1)
 
-ed.newTemplate("template-rl-resilience1", "RL: Contract Resilience")
+ed.newTemplate("template-rl-resilience1", "RL: Contract Resilience 1")
 ed.templateSummary("When the threshold is maintained, do something..")
 ed.templateStructure("whenever ([clockTime] >= [sampleTime]) RLAgent shall immediately \
 	satisfy ([threshold] + [deltaSuff]) => [action] >= [degradedService] & ([var] + [worst case reaction]) [thresholdComparison])")
@@ -288,10 +287,9 @@ dlTemplates.push(ed.createFinalTemplateObject())
 
 // =============================== Contract Resiliance 2 (was R7/resiliance2)
 
-ed.newTemplate("template-rl-contractResilience2", "RL: Contract Resilience");
+ed.newTemplate("template-rl-contractResilience2", "RL: Contract Resilience 2");
 ed.templateSummary("When the threshold is not maintained, do something...?");
-ed.templateStructure("whenever ([clockTime] >= [sampleTime]) & RLAgent shall immediately satisfy \
-	!([threshold] + [deltaSuff]) => [action] = [degradedService]");
+ed.templateStructure("whenever ([clockTime] >= [sampleTime]) & RLAgent shall immediately satisfy !([threshold] + [deltaSuff]) => [action] = [degradedService]");
 
 ed.fieldDescription("clockTime", "The clock's time.");
 ed.addOption("clockTime", "cRL", "Replace with clock variable name.");
