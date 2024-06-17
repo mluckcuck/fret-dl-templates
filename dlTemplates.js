@@ -75,15 +75,18 @@ dlTemplates.push(ed.createFinalTemplateObject());
 // =========================== System Threashold (was R3/threshold3)
 
 ed.newTemplate("template-rl-systemThreshold", "RL: System Threshold");
-ed.templateSummary("The system should always satisfy the given threashold.");
+ed.templateSummary("Under a given precondition, the system should always satisfy the given threashold.");
 
-ed.templateStructure("System shall always satisfy [threshold]");
+ed.templateStructure("if [precondition] System shall always satisfy [threshold]");
+
+ed.fieldDescription("precondition", "Precondition for the threshold.");
+ed.addOption("precondition", "precondition", "Replace with the precondition.");
 
 ed.fieldDescription("threshold", "var ~ threshold");
-ed.addOption("threshold", "var < threshold", "var less than threshold");
-ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold");
+ed.addOption("threshold", "var < threshold", "var less than threshold.");
+ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold.");
 
-ed.addExample("[T <= TMAX]");
+ed.addExample("[T <= TMAX] [T <= TMAX]");
 dlTemplates.push(ed.createFinalTemplateObject());
 
 // =========================== Contract Threshold (also was R1/threshold1)
@@ -129,9 +132,12 @@ dlTemplates.push(ed.createFinalTemplateObject());
 // =========================== System Recovery (new)
 
 ed.newTemplate("template-rl-systemRecovery", "RL: System Recovery");
-ed.templateSummary("After some disruption, the system should recover. ");
+ed.templateSummary("After some disruption, the system should recover the threshold within the maxRecoveryTime. ");
 
-ed.templateStructure("System shall always satisfy [time since disruption] > [maxRecoveryTime] => [threshold]");
+ed.templateStructure("if [precondition] System shall always satisfy [time since disruption] > [maxRecoveryTime] => [threshold]");
+
+ed.fieldDescription("precondition", "Precondition for the threshold.");
+ed.addOption("precondition", "precondition", "Replace with the precondition.");
 
 ed.fieldDescription("time since disruption", "t");
 ed.addOption("time since disruption", "t", "Replace with variable representing the time since the disruption.")
@@ -143,7 +149,7 @@ ed.fieldDescription("threshold", "var ~ threshold");
 ed.addOption("threshold", "var < threshold", "var less than threshold");
 ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold");
 
-ed.addExample("[T <= TMAX]");
+ed.addExample("[T <= TMAX][10][recoveryMax][T <= TMAX]");
 dlTemplates.push(ed.createFinalTemplateObject());
 
 //=============================== Contract Recovery (was R4/recovery1)
@@ -221,9 +227,12 @@ dlTemplates.push(ed.createFinalTemplateObject());
 // =========================== System Resiliance (new)
 
 ed.newTemplate("template-rl-systemResiliance", "RL: System Resiliance");
-ed.templateSummary("After some disruption, the system should recover. ");
+ed.templateSummary("The syste, should provide a degraded service, while maintaining the threshold. ");
 
-ed.templateStructure("System shall always satisfy [threshold] & [action] >= [degradedService]");
+ed.templateStructure("if [precondition] System shall always satisfy [threshold] & [action] >= [degradedService]");
+
+ed.fieldDescription("precondition", "Precondition for the threshold.");
+ed.addOption("precondition", "precondition", "Replace with the precondition.");
 
 ed.fieldDescription("threshold", "var ~ threshold");
 ed.addOption("threshold", "var < threshold", "var less than threshold");
@@ -235,7 +244,7 @@ ed.addOption("action", "worstCaseAction","Replace with the action for the worst-
 ed.fieldDescription("degradedService", "degradedService");
 ed.addOption("degradedService", "degradedService", "Replace with variable representing the degraded service.")
 
-ed.addExample("[T <= TMAX] [action] [degradedService]");
+ed.addExample("[T <= TMAX] [T <= TMAX] [action] [degradedService]");
 dlTemplates.push(ed.createFinalTemplateObject());
 
 // =============================== Contract Resiliance (was R6/resiliance1)
