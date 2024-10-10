@@ -1,0 +1,285 @@
+[
+    {
+        "reqid": "RLChooseAction",
+        "parent_reqid": "",
+        "project": "[DL] Temp Control",
+        "rationale": "whenever (c S ≥ t S ) RLAgent shall immediately satisfy c := ∗;",
+        "comments": "",
+        "fulltext": "whenever ( cs  >=  ts ) RLAgent shall immediately satisfy chooseAction",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "noTrigger",
+            "timing": "immediately",
+            "response": "satisfaction",
+            "variables": [
+                "cs",
+                "ts",
+                "chooseAction"
+            ],
+            "qualifier_word": "whenever",
+            "pre_condition": "(( cs >= ts ))",
+            "regular_condition": "(( cs >= ts ))",
+            "conditionTextRange": [
+                0,
+                22
+            ],
+            "component_name": "RLAgent",
+            "componentTextRange": [
+                24,
+                30
+            ],
+            "timingTextRange": [
+                38,
+                48
+            ],
+            "post_condition": "(chooseAction)",
+            "responseTextRange": [
+                50,
+                69
+            ],
+            "diagramVariables": "CC = <b><i>(( cs >= ts ))</i></b>, Response = <b><i>(chooseAction)</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cs >= ts ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_ft": "BAD_FT",
+            "regular_condition_unexp_pt": "(cs >= ts)",
+            "regular_condition_unexp_ft": "(cs >= ts)",
+            "regular_condition_SMV_pt": "(cs >= ts)",
+            "regular_condition_SMV_ft": "(cs >= ts)",
+            "post_condition_unexp_pt": "chooseAction",
+            "post_condition_unexp_ft": "chooseAction",
+            "post_condition_SMV_pt": "chooseAction",
+            "post_condition_SMV_ft": "chooseAction",
+            "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
+            "ft": "(LAST V ((cs >= ts) -> chooseAction))",
+            "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
+            "pt": "(H ((cs >= ts) -> chooseAction))",
+            "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
+            "ptExpanded": "(H ((cs >= ts) -> chooseAction))",
+            "CoCoSpecCode": "H(((cs >= ts) => chooseAction))",
+            "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftExpandedUnoptimized": "(LAST V ((cs >= ts) -> chooseAction))",
+            "ftExpanded": "(LAST V ((cs >= ts) -> chooseAction))",
+            "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftInfAUExpanded": "(G ((cs >= ts) -> chooseAction))",
+            "component": "RLAgent"
+        },
+        "_id": "0e11b940-870a-11ef-86ee-a99360dc69d9"
+    },
+    {
+        "reqid": "SystemThreshold",
+        "parent_reqid": "",
+        "project": "[DL] Temp Control",
+        "rationale": "if T ≤ T MAX System shall always satisfy T ≤ T MAX",
+        "comments": "",
+        "fulltext": "if  Temp < TMax  System shall always satisfy  Temp <= TMax ",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "regular",
+            "timing": "always",
+            "response": "satisfaction",
+            "variables": [
+                "Temp",
+                "TMax"
+            ],
+            "qualifier_word": "if",
+            "pre_condition": "(Temp < TMax)",
+            "regular_condition": "(Temp < TMax)",
+            "conditionTextRange": [
+                0,
+                14
+            ],
+            "component_name": "System",
+            "componentTextRange": [
+                17,
+                22
+            ],
+            "timingTextRange": [
+                30,
+                35
+            ],
+            "post_condition": "(Temp <= TMax)",
+            "responseTextRange": [
+                37,
+                57
+            ],
+            "diagramVariables": "TC = <b><i>(Temp < TMax)</i></b>, Response = <b><i>(Temp <= TMax)</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(Temp < TMax)</i></b> is true and any point in the interval where <b><i>(Temp < TMax)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at all time points between (and including) the trigger and the end of the interval.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_always_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_ft": "BAD_FT",
+            "regular_condition_unexp_pt": "(Temp < TMax)",
+            "regular_condition_unexp_ft": "(Temp < TMax)",
+            "regular_condition_SMV_pt": "(Temp < TMax)",
+            "regular_condition_SMV_ft": "(Temp < TMax)",
+            "post_condition_unexp_pt": "(Temp <= TMax)",
+            "post_condition_unexp_ft": "(Temp <= TMax)",
+            "post_condition_SMV_pt": "(Temp <= TMax)",
+            "post_condition_SMV_ft": "(Temp <= TMax)",
+            "ft_fetched": "((LAST V (((! $regular_condition_unexp_ft$) & ((! LAST) & (X $regular_condition_unexp_ft$))) -> (X (LAST V $post_condition_unexp_ft$)))) & ($regular_condition_unexp_ft$ -> (LAST V $post_condition_unexp_ft$)))",
+            "ft": "((LAST V (((! (Temp < TMax)) & ((! LAST) & (X (Temp < TMax)))) -> (X (LAST V (Temp <= TMax))))) & ((Temp < TMax) -> (LAST V (Temp <= TMax))))",
+            "pt_fetched": "(H ((H (! $regular_condition_unexp_pt$)) | $post_condition_unexp_pt$))",
+            "pt": "(H ((H (! (Temp < TMax))) | (Temp <= TMax)))",
+            "ptExpanded_fetched": "(H ((H (! $regular_condition_SMV_pt$)) | $post_condition_SMV_pt$))",
+            "ptExpanded": "(H ((H (! (Temp < TMax))) | (Temp <= TMax)))",
+            "CoCoSpecCode": "H((H(not ((Temp < TMax))) or (Temp <= TMax)))",
+            "ftExpanded_fetched": "((LAST V (((! $regular_condition_SMV_ft$) & ((! LAST) & (X $regular_condition_SMV_ft$))) -> (X (LAST V $post_condition_SMV_ft$)))) & ($regular_condition_SMV_ft$ -> (LAST V $post_condition_SMV_ft$)))",
+            "ftExpandedUnoptimized": "((LAST V (((! (Temp < TMax)) & ((! LAST) & (X (Temp < TMax)))) -> (X (LAST V (Temp <= TMax))))) & ((Temp < TMax) -> (LAST V (Temp <= TMax))))",
+            "ftExpanded": "((LAST V (((! (Temp < TMax)) & ((! LAST) & (X (Temp < TMax)))) -> (X (LAST V (Temp <= TMax))))) & ((Temp < TMax) -> (LAST V (Temp <= TMax))))",
+            "ftInfAUExpanded_fetched": "((G (((! $regular_condition_SMV_ft$) & (X $regular_condition_SMV_ft$)) -> (X (G $post_condition_SMV_ft$)))) & ($regular_condition_SMV_ft$ -> (G $post_condition_SMV_ft$)))",
+            "ftInfAUExpanded": "((G (((! (Temp < TMax)) & (X (Temp < TMax))) -> (X (G (Temp <= TMax))))) & ((Temp < TMax) -> (G (Temp <= TMax))))",
+            "component": "System"
+        },
+        "_id": "0e11b941-870a-11ef-86ee-a99360dc69d9"
+    },
+    {
+        "reqid": "RLNoChange",
+        "parent_reqid": "",
+        "project": "[DL] Temp Control",
+        "rationale": "whenever (c S < t S ) RLAgent shall immediately satisfy c := c_old ;",
+        "comments": "c := c_old doesn't fit into the template.",
+        "fulltext": "whenever ( cs  <  ts ) RLAgent shall immediately satisfy maintainAction",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "noTrigger",
+            "timing": "immediately",
+            "response": "satisfaction",
+            "variables": [
+                "cs",
+                "ts",
+                "maintainAction"
+            ],
+            "qualifier_word": "whenever",
+            "pre_condition": "(( cs < ts ))",
+            "regular_condition": "(( cs < ts ))",
+            "conditionTextRange": [
+                0,
+                21
+            ],
+            "component_name": "RLAgent",
+            "componentTextRange": [
+                23,
+                29
+            ],
+            "timingTextRange": [
+                37,
+                47
+            ],
+            "post_condition": "(maintainAction)",
+            "responseTextRange": [
+                49,
+                70
+            ],
+            "diagramVariables": "CC = <b><i>(( cs < ts ))</i></b>, Response = <b><i>(maintainAction)</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cs < ts ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_ft": "BAD_FT",
+            "regular_condition_unexp_pt": "(cs < ts)",
+            "regular_condition_unexp_ft": "(cs < ts)",
+            "regular_condition_SMV_pt": "(cs < ts)",
+            "regular_condition_SMV_ft": "(cs < ts)",
+            "post_condition_unexp_pt": "maintainAction",
+            "post_condition_unexp_ft": "maintainAction",
+            "post_condition_SMV_pt": "maintainAction",
+            "post_condition_SMV_ft": "maintainAction",
+            "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
+            "ft": "(LAST V ((cs < ts) -> maintainAction))",
+            "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
+            "pt": "(H ((cs < ts) -> maintainAction))",
+            "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
+            "ptExpanded": "(H ((cs < ts) -> maintainAction))",
+            "CoCoSpecCode": "H(((cs < ts) => maintainAction))",
+            "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftExpandedUnoptimized": "(LAST V ((cs < ts) -> maintainAction))",
+            "ftExpanded": "(LAST V ((cs < ts) -> maintainAction))",
+            "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftInfAUExpanded": "(G ((cs < ts) -> maintainAction))",
+            "component": "RLAgent"
+        },
+        "_id": "0e11b942-870a-11ef-86ee-a99360dc69d9"
+    },
+    {
+        "reqid": "HCThreshold",
+        "parent_reqid": "",
+        "project": "[DL] Temp Control",
+        "rationale": "whenever (c S ≥ t S ) RLAgent shall immediately\nsatisfy (T ≤ T MAX ) => (T + (h MAX − c) · t S ≤ T MAX",
+        "comments": "",
+        "fulltext": "whenever ( cs  >=  ts ) RLAgent shall immediately satisfy ( Temp <= TMax ) => ( Temp  +  (hMax - c) * ts   <= TMAx )",
+        "semantics": {
+            "type": "nasa",
+            "scope": {
+                "type": "null"
+            },
+            "condition": "noTrigger",
+            "timing": "immediately",
+            "response": "satisfaction",
+            "variables": [
+                "cs",
+                "ts",
+                "Temp",
+                "TMax",
+                "hMax",
+                "c",
+                "TMAx"
+            ],
+            "qualifier_word": "whenever",
+            "pre_condition": "(( cs >= ts ))",
+            "regular_condition": "(( cs >= ts ))",
+            "conditionTextRange": [
+                0,
+                22
+            ],
+            "component_name": "RLAgent",
+            "componentTextRange": [
+                24,
+                30
+            ],
+            "timingTextRange": [
+                38,
+                48
+            ],
+            "post_condition": "(( Temp <= TMax ) => ( Temp + ( hMax - c ) * ts <= TMAx ))",
+            "responseTextRange": [
+                50,
+                115
+            ],
+            "diagramVariables": "CC = <b><i>(( cs >= ts ))</i></b>, Response = <b><i>(( Temp <= TMax ) => ( Temp + ( hMax - c ) * ts <= TMAx ))</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cs >= ts ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
+            "scope_mode_pt": "BAD_PT",
+            "scope_mode_ft": "BAD_FT",
+            "regular_condition_unexp_pt": "(cs >= ts)",
+            "regular_condition_unexp_ft": "(cs >= ts)",
+            "regular_condition_SMV_pt": "(cs >= ts)",
+            "regular_condition_SMV_ft": "(cs >= ts)",
+            "post_condition_unexp_pt": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))",
+            "post_condition_unexp_ft": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))",
+            "post_condition_SMV_pt": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))",
+            "post_condition_SMV_ft": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))",
+            "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
+            "ft": "(LAST V ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
+            "pt": "(H ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
+            "ptExpanded": "(H ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "CoCoSpecCode": "H(((cs >= ts) => ((Temp <= TMax) => ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftExpandedUnoptimized": "(LAST V ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "ftExpanded": "(LAST V ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
+            "ftInfAUExpanded": "(G ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "component": "RLAgent"
+        },
+        "_id": "0e11b943-870a-11ef-86ee-a99360dc69d9"
+    }
+]
