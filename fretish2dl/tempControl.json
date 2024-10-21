@@ -67,7 +67,7 @@
             "ftInfAUExpanded": "(G ((cs >= ts) -> chooseAction))",
             "component": "RLAgent"
         },
-        "_id": "0e11b940-870a-11ef-86ee-a99360dc69d9"
+        "_id": "18653770-8faf-11ef-a945-d5c5838e7e5a"
     },
     {
         "reqid": "SystemThreshold",
@@ -136,7 +136,7 @@
             "ftInfAUExpanded": "((G (((! (Temp < TMax)) & (X (Temp < TMax))) -> (X (G (Temp <= TMax))))) & ((Temp < TMax) -> (G (Temp <= TMax))))",
             "component": "System"
         },
-        "_id": "0e11b941-870a-11ef-86ee-a99360dc69d9"
+        "_id": "18653771-8faf-11ef-a945-d5c5838e7e5a"
     },
     {
         "reqid": "RLNoChange",
@@ -206,15 +206,15 @@
             "ftInfAUExpanded": "(G ((cs < ts) -> maintainAction))",
             "component": "RLAgent"
         },
-        "_id": "0e11b942-870a-11ef-86ee-a99360dc69d9"
+        "_id": "18653772-8faf-11ef-a945-d5c5838e7e5a"
     },
     {
         "reqid": "HCThreshold",
-        "parent_reqid": "",
+        "parent_reqid": "TEST",
         "project": "[DL] Temp Control",
         "rationale": "whenever (c S ≥ t S ) RLAgent shall immediately\nsatisfy (T ≤ T MAX ) => (T + (h MAX − c) · t S ≤ T MAX",
         "comments": "",
-        "fulltext": "whenever ( cs  >=  ts ) RLAgent shall immediately satisfy ( Temp <= TMax ) => ( Temp  +  (hMax - c) * ts   <= TMAx )",
+        "fulltext": "whenever ( cs  >=  ts ) RLAgent shall immediately satisfy ( Temp <= TMax ) => ( Temp  +  (hMax - c) * ts   <= TMax )",
         "semantics": {
             "type": "nasa",
             "scope": {
@@ -229,8 +229,7 @@
                 "Temp",
                 "TMax",
                 "hMax",
-                "c",
-                "TMAx"
+                "c"
             ],
             "qualifier_word": "whenever",
             "pre_condition": "(( cs >= ts ))",
@@ -248,12 +247,12 @@
                 38,
                 48
             ],
-            "post_condition": "(( Temp <= TMax ) => ( Temp + ( hMax - c ) * ts <= TMAx ))",
+            "post_condition": "(( Temp <= TMax ) => ( Temp + ( hMax - c ) * ts <= TMax ))",
             "responseTextRange": [
                 50,
                 115
             ],
-            "diagramVariables": "CC = <b><i>(( cs >= ts ))</i></b>, Response = <b><i>(( Temp <= TMax ) => ( Temp + ( hMax - c ) * ts <= TMAx ))</i></b>.",
+            "diagramVariables": "CC = <b><i>(( cs >= ts ))</i></b>, Response = <b><i>(( Temp <= TMax ) => ( Temp + ( hMax - c ) * ts <= TMax ))</i></b>.",
             "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cs >= ts ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
             "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
             "scope_mode_pt": "BAD_PT",
@@ -262,24 +261,24 @@
             "regular_condition_unexp_ft": "(cs >= ts)",
             "regular_condition_SMV_pt": "(cs >= ts)",
             "regular_condition_SMV_ft": "(cs >= ts)",
-            "post_condition_unexp_pt": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))",
-            "post_condition_unexp_ft": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))",
-            "post_condition_SMV_pt": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))",
-            "post_condition_SMV_ft": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))",
+            "post_condition_unexp_pt": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMax))",
+            "post_condition_unexp_ft": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMax))",
+            "post_condition_SMV_pt": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMax))",
+            "post_condition_SMV_ft": "((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMax))",
             "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
-            "ft": "(LAST V ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "ft": "(LAST V ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
             "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
-            "pt": "(H ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "pt": "(H ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
             "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
-            "ptExpanded": "(H ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
-            "CoCoSpecCode": "H(((cs >= ts) => ((Temp <= TMax) => ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "ptExpanded": "(H ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
+            "CoCoSpecCode": "H(((cs >= ts) => ((Temp <= TMax) => ((Temp + ((hMax - c) * ts)) <= TMax))))",
             "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
-            "ftExpandedUnoptimized": "(LAST V ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
-            "ftExpanded": "(LAST V ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "ftExpandedUnoptimized": "(LAST V ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
+            "ftExpanded": "(LAST V ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
             "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
-            "ftInfAUExpanded": "(G ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMAx))))",
+            "ftInfAUExpanded": "(G ((cs >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
             "component": "RLAgent"
         },
-        "_id": "0e11b943-870a-11ef-86ee-a99360dc69d9"
+        "_id": "18653773-8faf-11ef-a945-d5c5838e7e5a"
     }
 ]
