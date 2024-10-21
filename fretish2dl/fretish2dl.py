@@ -1,5 +1,6 @@
 import argparse
 import json
+from math import e
 
 CHOOSE_ACTION_NAME = "RLChooseAction"
 NO_ACTION_NAME = "RLNoChange"
@@ -58,17 +59,21 @@ def build_output(extract_dict, dl_spec, system_name):
                                                                                                                                                "")
     print("alpha discrete ::= " + dl_spec["alpha_discrete"])
 
-    dl_spec["alpha_continuous"] = clock_variable + "' = 1 & " +  no_action_trigger
+    clock_time = extract_dict["clock_time"]
+    sample_time = extract_dict["sample_time"]
+
+    dl_spec["alpha_continuous"] = clock_variable + "' = 1 & " +  clock_time + " <= " + sample_time
 
     print("alpha continuous ::= " + dl_spec["alpha_continuous"])
 
     #TODO this needs to deal with multiple HC elements, or multiple sources I suppose. They should all go into the list
 
     hc_trigger = extract_dict["hc_condition"]
+    hc_threshold = extract_dict["hc_threshold"]
     hc_var =  extract_dict["hc_var"]
     hc_reaction =  extract_dict["hc_reaction_threshold"]
 
-    dl_spec["HC"] = [ hc_trigger + " -> " + hc_var + " + " + hc_reaction  ]
+    dl_spec["HC"] = [ "("+ hc_threshold  +")" + " -> " + hc_var + " + " + hc_reaction  ]
 
     print("HC :== " + dl_spec["HC"][0])
 
@@ -118,7 +123,12 @@ def parse_no_action(req, extract):
     post_condition = req["semantics"]["post_condition"]
 
     extract["no_action_condition"] = condition[3:-3]
+    extract["clock_time"], extract["sample_time"] = extract["no_action_condition"].split(" < ")
     extract["no_action_postcondition"] = post_condition[1: -1]
+
+
+    print(extract["no_action_condition"])
+    print( extract["no_action_postcondition"])
 
     return
 
@@ -137,6 +147,9 @@ def parse_system_threshold(req, extract):
 
     extract["system_threshold_condition"] = condition[1:-1]
     extract["system_threshold_postcondition"] = post_condition[1: -1]
+
+    print(extract["system_threshold_condition"] )
+    print(extract["system_threshold_postcondition"])
 
     return
 
