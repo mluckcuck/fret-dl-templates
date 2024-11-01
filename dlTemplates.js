@@ -55,7 +55,7 @@ dlTemplates.push(ed.createFinalTemplateObject())
 
 // =========================== Choose Action (was R1/threshold2)
 ed.newTemplate("template-rl-chooseAction", "RL Choose Action");
-ed.templateSummary("Whenever the sample time is reacheed (cRL >= tS) \
+ed.templateSummary("Whenever the sample time is reached (cRL >= tS) \
 	the RL agent chooses and action that ensures that the worst case reaction of the overall system, \
 	within one sample time still maintains the safety threshold.");
 
@@ -75,7 +75,7 @@ dlTemplates.push(ed.createFinalTemplateObject());
 // =========================== System Threshold (was R3/threshold3)
 
 ed.newTemplate("template-rl-systemThreshold", "System Threshold");
-ed.templateSummary("Under a given precondition, the system should always satisfy the given threashold.");
+ed.templateSummary("Under a given precondition, the system should always satisfy the given threshold.");
 
 ed.templateStructure("if [precondition] System shall always satisfy [threshold]");
 
@@ -92,8 +92,8 @@ dlTemplates.push(ed.createFinalTemplateObject());
 // =========================== Contract Threshold (also was R1/threshold1)
 
 ed.newTemplate("template-rl-contractThreshold", "Hybrid Contract Threshold");
-ed.templateSummary("Whenever the sample time is reacheed (cRL >= tS), if the safety critical variable [var] is already within the threshold it should, \
-	reamin within the threshold, event under the [worst case reaction].");
+ed.templateSummary("Whenever the sample time is reached (cRL >= tS), if the safety critical variable [var] is already within the threshold it should, \
+	remain within the threshold, event under the [worst case reaction].");
 ed.templateStructure("whenever ([clockTime] >= [sampleTime]) RLAgent shall immediately satisfy ([threshold]) => ([var] + [worst case reaction] [thresholdComparison])");
 
 
@@ -224,10 +224,10 @@ ed.addExample("whenever ([cRL >= tS]) RLAgent shall immediately satisfy ([t <= T
 dlTemplates.push(ed.createFinalTemplateObject());
 
 
-// =========================== System Resiliance (new)
+// =========================== System Resilience (new)
 
-ed.newTemplate("template-rl-systemResiliance", "System Resiliance");
-ed.templateSummary("The syste, should provide a degraded service, while maintaining the threshold. ");
+ed.newTemplate("template-rl-systemResilience", "System Resilience");
+ed.templateSummary("The system, should provide a degraded service, while maintaining the threshold. ");
 
 ed.templateStructure("if [precondition] System shall always satisfy [threshold] & [action] >= [degradedService]");
 
@@ -247,7 +247,7 @@ ed.addOption("degradedService", "degradedService", "Replace with variable repres
 ed.addExample("[T <= TMAX] [T <= TMAX] [action] [degradedService]");
 dlTemplates.push(ed.createFinalTemplateObject());
 
-// =============================== Contract Resiliance (was R6/resiliance1)
+// =============================== Contract Resilience (was R6/resilience1)
 
 ed.newTemplate("template-rl-resilience1", "Hybrid Contract Resilience 1")
 ed.templateSummary("If the safety critical variable is more than a sufficient margin ([Delta suff]) within the threshold, facilitating a higher service level action, then an [action] greater or equal to [degradedService] may be selected, ensuring the threshold’s maintenance even under the worst-case reaction.");
@@ -298,7 +298,7 @@ dlTemplates.push(ed.createFinalTemplateObject())
 
 ed.newTemplate("template-rl-contractResilience2", "Hybrid Contract Resilience 2");
 ed.templateSummary("If the safety critical variable is not a sufficient margin ([Delta suff]) within the threshold, then the RL agent defaults to a degraded service action ([action]=[degradedService]).");
-ed.templateStructure("whenever ([clockTime] >= [sampleTime]) & RLAgent shall immediately satisfy (![threshold] + [deltaSuff]) => [action] = [degradedService]");
+ed.templateStructure("whenever ([clockTime] >= [sampleTime]) RLAgent shall immediately satisfy (![threshold] + [deltaSuff]) => [action] = [degradedService]");
 
 ed.fieldDescription("clockTime", "The clock's time.");
 ed.addOption("clockTime", "cRL", "Replace with clock variable name.");
