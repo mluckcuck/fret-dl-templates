@@ -4,8 +4,13 @@ from math import e
 
 CHOOSE_ACTION_NAME = "RLChooseAction"
 NO_ACTION_NAME = "RLNoChange"
+
 SYSTEM_THRESHOLD_NAME = "SystemThreshold"
 HCTHRESHOLD = "HCThreshold"
+
+SYSTEM_RESILIENCE_NAME = "SystemResilience"
+HCRESILIENCE1 = "HCResiliance1"
+HCRESILIENCE2 = "HCResiliance2"
 
 def fretish2dl():
     """Main Method for the translator.
@@ -40,10 +45,16 @@ def build_output(extract_dict, dl_spec, system_name):
     #α cont ::= {c S ′ = 1 & c S ≤ t S })
     #HC ::= T ≤ T MAX → T + (h MAX − c) · t S ≤ T MAX
 
-    threshold = extract_dict["system_threshold_postcondition"]
-    dl_spec["system_property"] = threshold + " -> [" + system_name + "] " + threshold
+    if extract_dict["system_resilience_condition"] is not None:
+        threshold = extract_dict["system_resilience_condition"]
+        dl_spec["system_property"] = threshold + " -> [" + system_name + "] " + threshold
+        print("system property ::= " + dl_spec["system_property"])
+    elif extract_dict["system_threshold_postcondition"] is not None:
+        threshold = extract_dict["system_threshold_postcondition"]
+        dl_spec["system_property"] = threshold + " -> [" + system_name + "] " + threshold
+        print("system property ::= " + dl_spec["system_property"])
 
-    print("system property ::= " + dl_spec["system_property"])
+
 
     clock_var1, the_rest = extract_dict["no_action_condition"].split(" < ")
     clock_var2, the_rest = extract_dict["choose_action_condition"].split(" >= ")
@@ -68,16 +79,30 @@ def build_output(extract_dict, dl_spec, system_name):
 
     #TODO this needs to deal with multiple HC elements, or multiple sources I suppose. They should all go into the list
 
-    hc_trigger = extract_dict["hc_condition"]
-    hc_threshold = extract_dict["hc_threshold"]
-    hc_var =  extract_dict["hc_var"]
-    hc_reaction =  extract_dict["hc_reaction_threshold"]
+    hc_concat = ""
+    dl_spec["HC"] = []
 
-    dl_spec["HC"] = [ "("+ hc_threshold  +")" + " -> " + hc_var + " + " + hc_reaction  ]
+    if extract_dict["hc1_response"] is not None and extract_dict["hc2_response"] is not None:
+        dl_spec["HC"].append(extract_dict["hc1_response"])
+        dl_spec["HC"].append(extract_dict["hc2_response"])
 
-    print("HC :== " + dl_spec["HC"][0])
+        print("HC :== " + dl_spec["HC"][0] + " /\ " + dl_spec["HC"][1])
+
+    else:
+        hc_trigger = extract_dict["hc_condition"]
+        hc_threshold = extract_dict["hc_threshold"]
+        hc_var =  extract_dict["hc_var"]
+        hc_reaction =  extract_dict["hc_reaction_threshold"]
+
+        dl_spec["HC"] = ["(" + hc_threshold + ")" + " -> " + hc_var + " + " + hc_reaction]
+
+        print("HC :== " + dl_spec["HC"][0])
+
+
 
     return dl_spec
+
+
 
 
 
@@ -97,6 +122,12 @@ def parse_fret_project(project):
             parse_system_threshold(req, extract)
         elif name == HCTHRESHOLD:
             parse_hc_threshold(req, extract)
+        elif name == SYSTEM_RESILIENCE_NAME:
+            parse_system_resilience(req, extract)
+        elif name == HCRESILIENCE1:
+            parse_hc_resilience1(req, extract)
+        elif name == HCRESILIENCE2:
+            parse_hc_resilience2(req, extract)
 
     print("+++ FRETISH Parsing Complete +++")
     return extract
@@ -171,6 +202,47 @@ def parse_hc_threshold(req, extract):
 
     return
 
+def parse_system_resilience(req, extract):
+    print("+++ Parsing System Resilience +++")
+
+    condition = req["semantics"]["pre_condition"]
+    post_condition = req["semantics"]["post_condition"]
+
+    extract["system_resilience_condition"] = condition[1:-1]
+    extract["system_resilience_postcondition"] = post_condition[1: -1]
+    #TODO Check that the above are the same, or the contract template hasn't been obeyed
+
+    print(extract["system_resilience_condition"])
+    print(extract["system_resilience_postcondition"])
+
+def parse_hc_resilience1(req, extract):
+    print("+++ Parsing HC Resilience 1")
+    condition = req["semantics"]["pre_condition"]
+    post_condition = req["semantics"]["post_condition"]
+
+    # ([threshold]) => ([var] + [worst case reaction] [thresholdComparison])
+
+    extract["hc_r_condition"] = condition[3:-3]
+
+    threshold, the_rest = post_condition.split(" => ")
+    extract["hc_r_threshold"] = threshold[3:-2]
+    var, the_rest = the_rest.split(" + ")
+    extract["hc_r_var"] = var[2:]
+    extract["hc_r_reaction_threshold"] = the_rest
+
+    extract["hc1_response"] = post_condition.replace("=>", "->")
+
+    return
+
+
+def parse_hc_resilience2(req, extract):
+    print("+++ Parsing HC Resilience 2")
+
+    post_condition = req["semantics"]["post_condition"]
+
+    extract["hc2_response"] = post_condition.replace("=>", "->")
+
+    return
 
 
 if __name__ == "__main__":

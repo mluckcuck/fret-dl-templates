@@ -214,7 +214,7 @@
         "_id": "6fc17ba2-9888-11ef-9ce4-436c5479a709"
     },
     {
-        "reqid": "SystemReliliance",
+        "reqid": "SystemResilience",
         "parent_reqid": "",
         "project": "[DL] Water Distribution System",
         "rationale": "if h > h min ∧ sup rl ≥ sup dgr System shall always satisfy h >\nh min ∧ sup rl ≥ sup dgr",
