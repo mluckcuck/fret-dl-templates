@@ -1,6 +1,6 @@
 import argparse
 import json
-from math import e
+
 
 CHOOSE_ACTION_NAME = "RLChooseAction"
 NO_ACTION_NAME = "RLNoChange"
@@ -11,6 +11,11 @@ HCTHRESHOLD = "HCThreshold"
 SYSTEM_RESILIENCE_NAME = "SystemResilience"
 HCRESILIENCE1 = "HCResiliance1"
 HCRESILIENCE2 = "HCResiliance2"
+
+SYSTEM_RECOVERY_NAME = "SystemRecovery"
+HCRECOVERY1 = "HCRecovery1"
+HCRECOVERY2 = "HCRecovery2"
+
 
 def fretish2dl():
     """Main Method for the translator.
@@ -111,7 +116,8 @@ def parse_fret_project(project):
     # TODO Check type of project is list
     print("+++ Parsing FRETISH Project +++")
     extract = {}
-    # if args.format is None:
+
+    # Call the relevant parsing method
     for req in project:
         name = req["reqid"]
         if  name == CHOOSE_ACTION_NAME:
@@ -128,6 +134,18 @@ def parse_fret_project(project):
             parse_hc_resilience1(req, extract)
         elif name == HCRESILIENCE2:
             parse_hc_resilience2(req, extract)
+        elif name == SYSTEM_RECOVERY_NAME:
+            parse_system_recovery(req, extract)
+        elif name == HCRECOVERY1:
+            parse_hc_recovery1(req, extract)
+        elif name == HCRECOVERY2:
+            parse_hc_recovery2(req, extract)
+        else
+            print("+++ Unknown Requirement Name +++")
+            print(req["reqid"])
+            print("+++ +++")
+            print("")
+
 
     print("+++ FRETISH Parsing Complete +++")
     return extract
@@ -244,6 +262,17 @@ def parse_hc_resilience2(req, extract):
 
     return
 
+
+def parse_system_recovery(req, extract):
+    pass
+
+
+def parse_hc_recovery1(req, extract):
+    pass
+
+
+def parse_hc_recovery2(req, extract):
+    pass
 
 if __name__ == "__main__":
 
