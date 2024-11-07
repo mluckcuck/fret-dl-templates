@@ -1,35 +1,6 @@
-// *****************************************************************************
-// Notices:
-//
-// Copyright © 2019, 2021 United States Government as represented by the Administrator
-// of the National Aeronautics and Space Administration. All Rights Reserved.
-//
-// Disclaimers
-//
-// No Warranty: THE SUBJECT SOFTWARE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY OF
-// ANY KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT LIMITED
-// TO, ANY WARRANTY THAT THE SUBJECT SOFTWARE WILL CONFORM TO SPECIFICATIONS,
-// ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
-// OR FREEDOM FROM INFRINGEMENT, ANY WARRANTY THAT THE SUBJECT SOFTWARE WILL BE
-// ERROR FREE, OR ANY WARRANTY THAT DOCUMENTATION, IF PROVIDED, WILL CONFORM TO
-// THE SUBJECT SOFTWARE. THIS AGREEMENT DOES NOT, IN ANY MANNER, CONSTITUTE AN
-// ENDORSEMENT BY GOVERNMENT AGENCY OR ANY PRIOR RECIPIENT OF ANY RESULTS,
-// RESULTING DESIGNS, HARDWARE, SOFTWARE PRODUCTS OR ANY OTHER APPLICATIONS
-// RESULTING FROM USE OF THE SUBJECT SOFTWARE.  FURTHER, GOVERNMENT AGENCY
-// DISCLAIMS ALL WARRANTIES AND LIABILITIES REGARDING THIRD-PARTY SOFTWARE, IF
-// PRESENT IN THE ORIGINAL SOFTWARE, AND DISTRIBUTES IT ''AS IS.''
-//
-// Waiver and Indemnity:  RECIPIENT AGREES TO WAIVE ANY AND ALL CLAIMS AGAINST
-// THE UNITED STATES GOVERNMENT, ITS CONTRACTORS AND SUBCONTRACTORS, AS WELL AS
-// ANY PRIOR RECIPIENT.  IF RECIPIENT'S USE OF THE SUBJECT SOFTWARE RESULTS IN
-// ANY LIABILITIES, DEMANDS, DAMAGES, EXPENSES OR LOSSES ARISING FROM SUCH USE,
-// INCLUDING ANY DAMAGES FROM PRODUCTS BASED ON, OR RESULTING FROM, RECIPIENT'S
-// USE OF THE SUBJECT SOFTWARE, RECIPIENT SHALL INDEMNIFY AND HOLD HARMLESS THE
-// UNITED STATES GOVERNMENT, ITS CONTRACTORS AND SUBCONTRACTORS, AS WELL AS ANY
-// PRIOR RECIPIENT, TO THE EXTENT PERMITTED BY LAW.  RECIPIENT'S SOLE REMEDY FOR
-// ANY SUCH MATTER SHALL BE THE IMMEDIATE, UNILATERAL TERMINATION OF THIS
-// AGREEMENT.
-// *****************************************************************************
+// dlTempaltes
+// Matt Luckcuck, University of Nottingham
+// 2024
 
 const fretTemplatesPath = "./"
 const ed = require(fretTemplatesPath + 'templateEditor')
@@ -110,6 +81,8 @@ ed.addOption("var", "controlledVariable", "replace with the controlled variable.
 ed.fieldDescription("threshold", "var ~ threshold");
 ed.addOption("threshold", "var < threshold", "var less than threshold");
 ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold");
+ed.addOption("threshold", "var > threshold", "var greater than threshold");
+ed.addOption("threshold", "var >= threshold", "var greater than or equal to threshold");
 
 ed.fieldDescription("thresholdComparison","Comparison to the threshold variable.")
 ed.addOption("thresholdComparison", "< threshold", "less than threshold");
@@ -147,6 +120,8 @@ ed.addOption("maxRecoveryTime", "maxT", "Replace with variable representing the 
 ed.fieldDescription("threshold", "var ~ threshold");
 ed.addOption("threshold", "var < threshold", "var less than threshold");
 ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold");
+ed.addOption("threshold", "var > threshold", "var greater than threshold");
+ed.addOption("threshold", "var >= threshold", "var greater than or equal to threshold");
 
 ed.addExample("[T <= TMAX][10][recoveryMax][T <= TMAX]");
 dlTemplates.push(ed.createFinalTemplateObject());
@@ -169,7 +144,8 @@ ed.addOption("var", "controlledVariable", "replace with the controlled variable.
 ed.fieldDescription("threshold", "var ~ Threshold");
 ed.addOption("threshold", "var < threshold", "var less than threshold");
 ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold");
-
+ed.addOption("threshold", "var > threshold", "var greater than threshold");
+ed.addOption("threshold", "var >= threshold", "var greater than or equal to threshold");
 
 ed.fieldDescription("thresholdComparison","Comparison to the threshold variable.");
 ed.addOption("thresholdComparison", "< threshold", "less than threshold");
@@ -207,6 +183,8 @@ ed.addOption("var", "controlledVariable", "replace with the controlled variable.
 ed.fieldDescription("threshold", "var ~ Threshold");
 ed.addOption("threshold", "var < threshold", "var less than threshold");
 ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold");
+ed.addOption("threshold", "var > threshold", "var greater than threshold");
+ed.addOption("threshold", "var >= threshold", "var greater than or equal to threshold");
 
 ed.fieldDescription("thresholdComparison","Comparison to the threshold variable.")
 ed.addOption("thresholdComparison", "< threshold", "less than threshold");
@@ -237,6 +215,8 @@ ed.addOption("precondition", "precondition", "Replace with the precondition.");
 ed.fieldDescription("threshold", "var ~ threshold");
 ed.addOption("threshold", "var < threshold", "var less than threshold");
 ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold");
+ed.addOption("threshold", "var > threshold", "var greater than threshold");
+ed.addOption("threshold", "var >= threshold", "var greater than or equal to threshold");
 
 ed.fieldDescription("action", "The action for the worst-case reaction function")
 ed.addOption("action", "worstCaseAction","Replace with the action for the worst-case reaction function")
@@ -271,6 +251,8 @@ ed.addOption("worst case reaction", "wcreaction", "Replace with worst-case react
 ed.fieldDescription("threshold", "var ~ Threshold");
 ed.addOption("threshold", "var < threshold", "var less than threshold");
 ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold");
+ed.addOption("threshold", "var > threshold", "var greater than threshold");
+ed.addOption("threshold", "var >= threshold", "var greater than or equal to threshold");
 
 ed.fieldDescription("action", "The action for the worst-case reaction function")
 ed.addOption("action", "worstCaseAction","Replace with the action for the worst-case reaction function")
@@ -310,6 +292,8 @@ ed.addOption("sampleTime", "sampleTime",  "Replace with sample time variable nam
 ed.fieldDescription("threshold", "var ~ Threshold");
 ed.addOption("threshold", "var < threshold", "var less than threshold");
 ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold");
+ed.addOption("threshold", "var > threshold", "var greater than threshold");
+ed.addOption("threshold", "var >= threshold", "var greater than or equal to threshold");
 
 ed.fieldDescription("threshold","The controlled variable's threshold.");
 ed.addOption("threshold", "variableThreshold", "Replace with the controlled variable's threshold.");
