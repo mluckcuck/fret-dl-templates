@@ -91,7 +91,7 @@ def build_output(extract_dict, dl_spec, system_name):
         dl_spec["HC"].append(extract_dict["hc1_response"])
         dl_spec["HC"].append(extract_dict["hc2_response"])
 
-        print("HC :== " + dl_spec["HC"][0] + " /\ " + dl_spec["HC"][1])
+        print("HC :== " + dl_spec["HC"][0] + " && " + dl_spec["HC"][1])
 
     else:
         hc_trigger = extract_dict["hc_condition"]
@@ -140,7 +140,7 @@ def parse_fret_project(project):
             parse_hc_recovery1(req, extract)
         elif name == HCRECOVERY2:
             parse_hc_recovery2(req, extract)
-        else
+        else:
             print("+++ Unknown Requirement Name +++")
             print(req["reqid"])
             print("+++ +++")
