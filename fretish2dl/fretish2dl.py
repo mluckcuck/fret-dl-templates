@@ -51,11 +51,11 @@ def build_output(extract_dict, dl_spec, system_name):
     #α cont ::= {c S ′ = 1 & c S ≤ t S })
     #HC ::= T ≤ T MAX → T + (h MAX − c) · t S ≤ T MAX
 
-    if extract_dict["system_resilience_condition"] is not None:
+    if "system_resilience_condition" in extract_dict and extract_dict["system_resilience_condition"] is not None:
         threshold = extract_dict["system_resilience_condition"]
         dl_spec["system_property"] = threshold + " -> [" + system_name + "] " + threshold
         print("system property ::= " + dl_spec["system_property"])
-    elif extract_dict["system_threshold_postcondition"] is not None:
+    elif "system_threshold_postcondition" in extract_dict and extract_dict["system_threshold_postcondition"] is not None:
         threshold = extract_dict["system_threshold_postcondition"]
         dl_spec["system_property"] = threshold + " -> [" + system_name + "] " + threshold
         print("system property ::= " + dl_spec["system_property"])
@@ -88,7 +88,7 @@ def build_output(extract_dict, dl_spec, system_name):
     hc_concat = ""
     dl_spec["HC"] = []
 
-    if extract_dict["hc1_response"] is not None and extract_dict["hc2_response"] is not None:
+    if "hc1_response" in extract_dict and extract_dict["hc1_response"] is not None and extract_dict["hc2_response"] is not None:
         dl_spec["HC"].append(extract_dict["hc1_response"])
         dl_spec["HC"].append(extract_dict["hc2_response"])
 
