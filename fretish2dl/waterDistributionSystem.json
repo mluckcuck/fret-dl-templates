@@ -71,7 +71,7 @@
             "ftInfAUExpanded": "(G ((cs >= ts) -> ((! (h > (hmin + deltaSuff))) -> (supRL = supDGR))))",
             "component": "RLAgent"
         },
-        "_id": "2ebb3890-a679-11ef-8874-cde1a02b03fb"
+        "_id": "3a9da790-a680-11ef-9844-153efaf2562e"
     },
     {
         "reqid": "RLNoChange",
@@ -79,7 +79,7 @@
         "project": "[DL] Water Distribution System",
         "rationale": "whenever (c S < t S ) RLAgent shall immediately satisfy \nsup rl := sup rlold ; i rl := i rlold\n\n",
         "comments": "Maintain Action again, needs to have the variable name.",
-        "fulltext": "whenever ( cs  <  ts ) RLAgent shall immediately satisfy maintain( suprl, irl )",
+        "fulltext": "whenever ( cs  <  ts ) RLAgent shall immediately satisfy maintain( supRL, iRL )",
         "semantics": {
             "type": "nasa",
             "scope": {
@@ -92,8 +92,8 @@
                 "cs",
                 "ts",
                 "maintain",
-                "suprl",
-                "irl"
+                "supRL",
+                "iRL"
             ],
             "qualifier_word": "whenever",
             "pre_condition": "(( cs < ts ))",
@@ -111,12 +111,12 @@
                 37,
                 47
             ],
-            "post_condition": "(maintain ( suprl , irl ))",
+            "post_condition": "(maintain ( supRL , iRL ))",
             "responseTextRange": [
                 49,
                 78
             ],
-            "diagramVariables": "CC = <b><i>(( cs < ts ))</i></b>, Response = <b><i>(maintain ( suprl , irl ))</i></b>.",
+            "diagramVariables": "CC = <b><i>(( cs < ts ))</i></b>, Response = <b><i>(maintain ( supRL , iRL ))</i></b>.",
             "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cs < ts ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
             "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
             "scope_mode_pt": "BAD_PT",
@@ -125,25 +125,25 @@
             "regular_condition_unexp_ft": "(cs < ts)",
             "regular_condition_SMV_pt": "(cs < ts)",
             "regular_condition_SMV_ft": "(cs < ts)",
-            "post_condition_unexp_pt": "maintain(suprl,irl)",
-            "post_condition_unexp_ft": "maintain(suprl,irl)",
-            "post_condition_SMV_pt": "maintain(suprl,irl)",
-            "post_condition_SMV_ft": "maintain(suprl,irl)",
+            "post_condition_unexp_pt": "maintain(supRL,iRL)",
+            "post_condition_unexp_ft": "maintain(supRL,iRL)",
+            "post_condition_SMV_pt": "maintain(supRL,iRL)",
+            "post_condition_SMV_ft": "maintain(supRL,iRL)",
             "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
-            "ft": "(LAST V ((cs < ts) -> maintain(suprl,irl)))",
+            "ft": "(LAST V ((cs < ts) -> maintain(supRL,iRL)))",
             "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
-            "pt": "(H ((cs < ts) -> maintain(suprl,irl)))",
+            "pt": "(H ((cs < ts) -> maintain(supRL,iRL)))",
             "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
-            "ptExpanded": "(H ((cs < ts) -> maintain(suprl,irl)))",
-            "CoCoSpecCode": "H(((cs < ts) => maintain(suprl,irl)))",
+            "ptExpanded": "(H ((cs < ts) -> maintain(supRL,iRL)))",
+            "CoCoSpecCode": "H(((cs < ts) => maintain(supRL,iRL)))",
             "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
-            "ftExpandedUnoptimized": "(LAST V ((cs < ts) -> maintain(suprl,irl)))",
-            "ftExpanded": "(LAST V ((cs < ts) -> maintain(suprl,irl)))",
+            "ftExpandedUnoptimized": "(LAST V ((cs < ts) -> maintain(supRL,iRL)))",
+            "ftExpanded": "(LAST V ((cs < ts) -> maintain(supRL,iRL)))",
             "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
-            "ftInfAUExpanded": "(G ((cs < ts) -> maintain(suprl,irl)))",
+            "ftInfAUExpanded": "(G ((cs < ts) -> maintain(supRL,iRL)))",
             "component": "RLAgent"
         },
-        "_id": "2ebb3891-a679-11ef-8874-cde1a02b03fb"
+        "_id": "3a9da791-a680-11ef-9844-153efaf2562e"
     },
     {
         "reqid": "RLChooseAction",
@@ -151,7 +151,7 @@
         "project": "[DL] Water Distribution System",
         "rationale": "whenever (c S ≥ t S ) RLAgent shall immediately satisfy sup rl :=\n∗; i rl := ∗;",
         "comments": "",
-        "fulltext": "whenever ( cs  >=  ts ) RLAgent shall immediately satisfy choose( suprl, irl )",
+        "fulltext": "whenever ( cs  >=  ts ) RLAgent shall immediately satisfy choose( supRL, iRL )",
         "semantics": {
             "type": "nasa",
             "scope": {
@@ -164,8 +164,8 @@
                 "cs",
                 "ts",
                 "choose",
-                "suprl",
-                "irl"
+                "supRL",
+                "iRL"
             ],
             "qualifier_word": "whenever",
             "pre_condition": "(( cs >= ts ))",
@@ -183,12 +183,12 @@
                 38,
                 48
             ],
-            "post_condition": "(choose ( suprl , irl ))",
+            "post_condition": "(choose ( supRL , iRL ))",
             "responseTextRange": [
                 50,
                 77
             ],
-            "diagramVariables": "CC = <b><i>(( cs >= ts ))</i></b>, Response = <b><i>(choose ( suprl , irl ))</i></b>.",
+            "diagramVariables": "CC = <b><i>(( cs >= ts ))</i></b>, Response = <b><i>(choose ( supRL , iRL ))</i></b>.",
             "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cs >= ts ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
             "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
             "scope_mode_pt": "BAD_PT",
@@ -197,25 +197,25 @@
             "regular_condition_unexp_ft": "(cs >= ts)",
             "regular_condition_SMV_pt": "(cs >= ts)",
             "regular_condition_SMV_ft": "(cs >= ts)",
-            "post_condition_unexp_pt": "choose(suprl,irl)",
-            "post_condition_unexp_ft": "choose(suprl,irl)",
-            "post_condition_SMV_pt": "choose(suprl,irl)",
-            "post_condition_SMV_ft": "choose(suprl,irl)",
+            "post_condition_unexp_pt": "choose(supRL,iRL)",
+            "post_condition_unexp_ft": "choose(supRL,iRL)",
+            "post_condition_SMV_pt": "choose(supRL,iRL)",
+            "post_condition_SMV_ft": "choose(supRL,iRL)",
             "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
-            "ft": "(LAST V ((cs >= ts) -> choose(suprl,irl)))",
+            "ft": "(LAST V ((cs >= ts) -> choose(supRL,iRL)))",
             "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
-            "pt": "(H ((cs >= ts) -> choose(suprl,irl)))",
+            "pt": "(H ((cs >= ts) -> choose(supRL,iRL)))",
             "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
-            "ptExpanded": "(H ((cs >= ts) -> choose(suprl,irl)))",
-            "CoCoSpecCode": "H(((cs >= ts) => choose(suprl,irl)))",
+            "ptExpanded": "(H ((cs >= ts) -> choose(supRL,iRL)))",
+            "CoCoSpecCode": "H(((cs >= ts) => choose(supRL,iRL)))",
             "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
-            "ftExpandedUnoptimized": "(LAST V ((cs >= ts) -> choose(suprl,irl)))",
-            "ftExpanded": "(LAST V ((cs >= ts) -> choose(suprl,irl)))",
+            "ftExpandedUnoptimized": "(LAST V ((cs >= ts) -> choose(supRL,iRL)))",
+            "ftExpanded": "(LAST V ((cs >= ts) -> choose(supRL,iRL)))",
             "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
-            "ftInfAUExpanded": "(G ((cs >= ts) -> choose(suprl,irl)))",
+            "ftInfAUExpanded": "(G ((cs >= ts) -> choose(supRL,iRL)))",
             "component": "RLAgent"
         },
-        "_id": "2ebb3892-a679-11ef-8874-cde1a02b03fb"
+        "_id": "3a9da792-a680-11ef-9844-153efaf2562e"
     },
     {
         "reqid": "SystemResilience",
@@ -286,7 +286,7 @@
             "ftInfAUExpanded": "((G (((! ((h > hmin) & (supRL >= supDGR))) & (X ((h > hmin) & (supRL >= supDGR)))) -> (X (G ((h > hmin) & (supRL >= supDGR)))))) & (((h > hmin) & (supRL >= supDGR)) -> (G ((h > hmin) & (supRL >= supDGR)))))",
             "component": "System"
         },
-        "_id": "2ebb3893-a679-11ef-8874-cde1a02b03fb"
+        "_id": "3a9da793-a680-11ef-9844-153efaf2562e"
     },
     {
         "reqid": "HCResiliance1",
@@ -360,6 +360,6 @@
             "ftInfAUExpanded": "(G ((cs >= ts) -> ((h > (hmin + deltaSuff)) -> ((supRL >= supDGR) & ((h + ((h - supRL) * ts)) > hmin)))))",
             "component": "RLAgent"
         },
-        "_id": "2ebb3894-a679-11ef-8874-cde1a02b03fb"
+        "_id": "3a9da794-a680-11ef-9844-153efaf2562e"
     }
 ]

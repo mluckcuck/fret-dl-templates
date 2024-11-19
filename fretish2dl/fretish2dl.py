@@ -1,6 +1,7 @@
 import argparse
 import json
 
+from paramiko.kex_gss import c_MSG_KEXGSS_HOSTKEY
 
 CHOOSE_ACTION_NAME = "RLChooseAction"
 NO_ACTION_NAME = "RLNoChange"
@@ -151,6 +152,23 @@ def parse_fret_project(project):
     return extract
 
 
+def get_function_varlist(function_call):
+    """Gets the variable list from an atomic function call"""
+    print("+++ Getting Function's Variable List +++")
+
+    # Find the brackets
+    open_bracket = function_call.index("(")
+    close_bracket = function_call.index(")")
+
+    # Strip out the function call and brackets, and strip the outside whitespace
+    stripped_function_call = function_call[open_bracket+1: close_bracket].strip()
+
+    # Make it into a list, stripping the whitespace around the comma
+    var_list = stripped_function_call.split(" , ")
+
+    return var_list
+
+
 def parse_choose_action(req, extract):
     """"parses the relevant information from an RLChooseAction requirement."""
     print("+++ Parsing Choose Action +++")
@@ -159,8 +177,15 @@ def parse_choose_action(req, extract):
     post_condition = req["semantics"]["post_condition"]
 
     extract["choose_action_condition"] = condition[3:-3]
-    extract["choose_action_postcondition"] = post_condition[1: -1]
+    #extract["choose_action_postcondition"] = post_condition[1: -1]
 
+    var_list = get_function_varlist(post_condition[1: -1])
+
+    choose_action_variables = ""
+    for var in var_list:
+        choose_action_variables += "{0} := *; ".format(var)
+
+    extract["choose_action_postcondition"] = choose_action_variables
 
     return
 
@@ -178,6 +203,14 @@ def parse_no_action(req, extract):
 
     print(extract["no_action_condition"])
     print( extract["no_action_postcondition"])
+
+    var_list = get_function_varlist(post_condition[1: -1])
+
+    no_action_variables = ""
+    for var in var_list:
+        no_action_variables += "{0} := {0}_old; ".format(var)
+
+    extract["no_action_postcondition"] = no_action_variables
 
     return
 
