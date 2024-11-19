@@ -12,7 +12,7 @@ let dlTemplates = []
 
 ed.newTemplate("template-rl-noChange", "RL No Change");
 ed.templateSummary("whenever the sample time is not reached (cRL < tS) the RL agent does not change the action");
-ed.templateStructure("whenever ([clockTime] < [sampleTime]) RLAgent shall immediately satisfy maintainAction");
+ed.templateStructure("whenever ([clockTime] < [sampleTime]) RLAgent shall immediately satisfy maintain([varList])");
 
 ed.fieldDescription("clockTime", "The clock's time.");
 ed.addOption("clockTime", "cRL", "Replace with clock variable name.");
@@ -20,7 +20,12 @@ ed.addOption("clockTime", "cRL", "Replace with clock variable name.");
 ed.fieldDescription("sampleTime", "The sample time.");
 ed.addOption("sampleTime", "sampleTime",  "Replace with sample time variable name.");
 
-ed.addExample("[cRL][tS]")
+ed.fieldDescription("varList", "The variable to be maintained,");
+ed.addOption("varList", "var", "Replace with variable name.")
+ed.addOption("varList", "var1, var2,...", "Replace with list of variable names.")
+
+ed.addExample("[cRL][tS][temp]");
+ed.addExample("[clockTime][sampleTime][speed]")
 
 dlTemplates.push(ed.createFinalTemplateObject())
 
@@ -30,7 +35,7 @@ ed.templateSummary("Whenever the sample time is reached (cRL >= tS) \
 	the RL agent chooses and action that ensures that the worst case reaction of the overall system, \
 	within one sample time still maintains the safety threshold.");
 
-ed.templateStructure("whenever ([clockTime] >= [sampleTime]) RLAgent shall immediately satisfy chooseAction");
+ed.templateStructure("whenever ([clockTime] >= [sampleTime]) RLAgent shall immediately satisfy choose([varList])");
 
 ed.fieldDescription("clockTime", "The clock's time.");
 ed.addOption("clockTime", "cRL", "Replace with clock variable name.");
@@ -38,8 +43,14 @@ ed.addOption("clockTime", "cRL", "Replace with clock variable name.");
 ed.fieldDescription("sampleTime", "The sample time.");
 ed.addOption("sampleTime", "sampleTime",  "Replace with sample time variable name.");
 
+ed.fieldDescription("varList", "The variable to be maintained,");
+ed.addOption("varList", "var", "Replace with variable name.")
+ed.addOption("varList", "var1, var2,...", "Replace with list of variable names.")
 
-ed.addExample("whenever ([cRL] >= [tS]) RLAgent shall immediately satisfy chooseAction");
+
+
+ed.addExample("[cRL][tS][temp]");
+ed.addExample("[clockTime][sampleTime][speed]")
 
 dlTemplates.push(ed.createFinalTemplateObject());
 
