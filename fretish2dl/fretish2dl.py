@@ -22,6 +22,10 @@ def fretish2dl():
     """Main Method for the translator.
     This calls the right translation code,
     based on the format argument"""
+    print("+++ Fretish2dL +++")
+    print("+++ Matt Luckcuck 2024 +++")
+    print()
+    print()
 
     dl_spec = {"system_property": None, "alpha_discrete": None, "alpha_continuous": None, "HC": None}
 
