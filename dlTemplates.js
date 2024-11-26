@@ -141,7 +141,7 @@ dlTemplates.push(ed.createFinalTemplateObject());
 
 ed.newTemplate("template-rl-contractRecovery1", "Hybrid Contract Recovery 1")
 ed.templateSummary("If the threshold is violated (![threshold]), the RL agent recovers the variable to within safe limits under the worst-case reaction within the recovery time, which can be specified in [worst case recovery]");
-ed.templateStructure("whenever ([clockTime] >= [sampleTime]) RLAgent shall immediately satisfy & (![threshold]) => ([var] + [worst case recovery] [thresholdComparison])");
+ed.templateStructure("whenever ([clockTime] >= [sampleTime]) RLAgent shall immediately satisfy (![threshold]) => ([var] + [worst case recovery] [thresholdComparison])");
 
 ed.fieldDescription("clockTime", "The clock's time.");
 ed.addOption("clockTime", "cRL", "Replace with clock variable name.");
