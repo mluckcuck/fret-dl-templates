@@ -44,7 +44,7 @@ def fretish2dl():
 
     print("\n+++ Translation Complete +++")
 
-def build_output(extract_dict, dl_spec, system_name):
+def build_output(extract_dict: dict, dl_spec: dict, system_name: str):
     """Builds the text of the output from the variables in the extract_dict."""
 
     print("\n+++ Output Preview +++\n")
@@ -124,17 +124,15 @@ def build_output(extract_dict, dl_spec, system_name):
     return dl_spec
 
 
-
-
-
-def parse_fret_project(project):
+def parse_fret_project(project: list):
     """Parse the json FRET Project"""
     # TODO Check type of project is list
     print("+++ Parsing FRETISH Project +++")
-    extract = {}
+    extract: dict[str,str] = {}
 
     # Call the relevant parsing method
     for req in project:
+        print(type(req))
         name = req["reqid"]
         if  name == CHOOSE_ACTION_NAME:
             parse_choose_action(req, extract)
@@ -167,7 +165,7 @@ def parse_fret_project(project):
     return extract
 
 
-def get_function_varlist(function_call):
+def get_function_varlist(function_call: str):
     """Gets the variable list from an atomic function call"""
     print("+++ Getting Function's Variable List +++")
 
@@ -184,7 +182,7 @@ def get_function_varlist(function_call):
     return var_list
 
 
-def parse_choose_action(req, extract):
+def parse_choose_action(req: dict[str,dict], extract: dict[str, str]) -> None:
     """"parses the relevant information from an RLChooseAction requirement."""
     print("+++ Parsing Choose Action +++")
     condition = req["semantics"]["pre_condition"]
@@ -204,7 +202,7 @@ def parse_choose_action(req, extract):
 
     return
 
-def parse_no_action(req, extract):
+def parse_no_action(req: dict[str,dict], extract: dict[str, str]) -> None:
     """parses the relevant information from an RLNoChange requirement."""
     print("+++ Parsing No Action +++")
     condition = req["semantics"]["pre_condition"]
@@ -229,7 +227,7 @@ def parse_no_action(req, extract):
 
     return
 
-def parse_system_threshold(req, extract):
+def parse_system_threshold(req: dict[str,dict], extract: dict[str, str]) -> None:
     """parse the relevant information from a SystemThreshold requirement"""
     print ("+++ Parsing System Threshold +++")
 
@@ -250,7 +248,7 @@ def parse_system_threshold(req, extract):
 
     return
 
-def parse_hc_threshold(req, extract):
+def parse_hc_threshold(req: dict[str,dict], extract: dict[str, str]) -> None:
     """parses the relevant information from an HCThreshold requirement."""
     print("+++ Parsing HC Threshold")
     condition = req["semantics"]["pre_condition"]
@@ -268,7 +266,7 @@ def parse_hc_threshold(req, extract):
 
     return
 
-def parse_system_resilience(req, extract):
+def parse_system_resilience(req: dict[str,dict], extract: dict[str, str]) -> None:
     print("+++ Parsing System Resilience +++")
 
     condition = req["semantics"]["pre_condition"]
@@ -281,7 +279,7 @@ def parse_system_resilience(req, extract):
     print(extract["system_resilience_condition"])
     print(extract["system_resilience_postcondition"])
 
-def parse_hc_resilience1(req, extract):
+def parse_hc_resilience1(req: dict[str,dict], extract: dict[str, str]) -> None:
     print("+++ Parsing HC Resilience 1")
     condition = req["semantics"]["pre_condition"]
     post_condition = req["semantics"]["post_condition"]
@@ -301,7 +299,7 @@ def parse_hc_resilience1(req, extract):
     return
 
 
-def parse_hc_resilience2(req, extract):
+def parse_hc_resilience2(req: dict[str,dict], extract: dict[str, str]) -> None:
     print("+++ Parsing HC Resilience 2")
 
     post_condition = req["semantics"]["post_condition"]
@@ -311,7 +309,7 @@ def parse_hc_resilience2(req, extract):
     return
 
 
-def parse_system_recovery(req, extract):
+def parse_system_recovery(req: dict[str,dict], extract: dict[str, str]) -> None:
     """ Parses a System Recovery requirement"""
     print("+++ Parsing System Recovery +++")
 
@@ -331,7 +329,7 @@ def parse_system_recovery(req, extract):
     return
 
 
-def parse_hc_recovery1(req, extract):
+def parse_hc_recovery1(req: dict[str,dict], extract: dict[str, str]) -> None:
     """ Parses a HC Recovery 1 requirement"""
     print("+++ Parsing HC Recovery 1")
     condition = req["semantics"]["pre_condition"]
@@ -350,7 +348,7 @@ def parse_hc_recovery1(req, extract):
     #extract_dict["hc1_recovery"]
 
 
-def parse_hc_recovery2(req, extract):
+def parse_hc_recovery2(req: dict[str,dict], extract: dict[str, str]) -> None:
     """ Parse a HC Recovery 2 requirement"""
     print("+++ Parsing HC Recovery 1")
     condition = req["semantics"]["pre_condition"]
