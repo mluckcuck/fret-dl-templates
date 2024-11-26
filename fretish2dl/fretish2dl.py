@@ -1,8 +1,6 @@
 import argparse
 import json
 
-from paramiko.kex_gss import c_MSG_KEXGSS_HOSTKEY
-
 CHOOSE_ACTION_NAME = "RLChooseAction"
 NO_ACTION_NAME = "RLNoChange"
 
@@ -55,6 +53,8 @@ def build_output(extract_dict, dl_spec, system_name):
     #α cont ::= {c S ′ = 1 & c S ≤ t S })
     #HC ::= T ≤ T MAX → T + (h MAX − c) · t S ≤ T MAX
 
+    ###################
+    # Builds the pre/post condition system property
     if "system_resilience_condition" in extract_dict and extract_dict["system_resilience_condition"] is not None:
         threshold = extract_dict["system_resilience_condition"]
         dl_spec["system_property"] = threshold + " -> [" + system_name + "] " + threshold
@@ -63,8 +63,14 @@ def build_output(extract_dict, dl_spec, system_name):
         threshold = extract_dict["system_threshold_postcondition"]
         dl_spec["system_property"] = threshold + " -> [" + system_name + "] " + threshold
         print("system property ::= " + dl_spec["system_property"])
+    elif "system_recovery_condition" in extract_dict and extract_dict["system_recovery_condition" ] is not None:
+        threshold = extract_dict["system_recovery_condition"]
+        dl_spec["system_property"] = threshold + " -> [" + system_name + "] " + threshold
+        print("system property ::= " + dl_spec["system_property"])
 
 
+    ##########################
+    # Builds the alpha discrete and alpha continuous components.
 
     clock_var1, the_rest = extract_dict["no_action_condition"].split(" < ")
     clock_var2, the_rest = extract_dict["choose_action_condition"].split(" >= ")
@@ -89,6 +95,8 @@ def build_output(extract_dict, dl_spec, system_name):
 
     #TODO this needs to deal with multiple HC elements, or multiple sources I suppose. They should all go into the list
 
+    ################################
+    # Builds the Hybrid Contract (HC) component
     hc_concat = ""
     dl_spec["HC"] = []
 
@@ -97,8 +105,13 @@ def build_output(extract_dict, dl_spec, system_name):
         dl_spec["HC"].append(extract_dict["hc2_response"])
 
         print("HC :== " + dl_spec["HC"][0] + " && " + dl_spec["HC"][1])
+    elif "hc1_recovery" in extract_dict and extract_dict["hc1_recovery"] is not None and extract_dict["hc2_recovery"] is not None:
+        dl_spec["HC"].append(extract_dict["hc1_recovery"])
+        dl_spec["HC"].append(extract_dict["hc2_recovery"])
 
-    else:
+        print("HC :== " + dl_spec["HC"][0] + " && " + dl_spec["HC"][1])
+
+    elif "hc_condition" in extract_dict:
         hc_trigger = extract_dict["hc_condition"]
         hc_threshold = extract_dict["hc_threshold"]
         hc_var =  extract_dict["hc_var"]
@@ -107,8 +120,6 @@ def build_output(extract_dict, dl_spec, system_name):
         dl_spec["HC"] = ["(" + hc_threshold + ")" + " -> " + hc_var + " + " + hc_reaction]
 
         print("HC :== " + dl_spec["HC"][0])
-
-
 
     return dl_spec
 
@@ -301,15 +312,56 @@ def parse_hc_resilience2(req, extract):
 
 
 def parse_system_recovery(req, extract):
-    pass
+    """ Parses a System Recovery requirement"""
+    print("+++ Parsing System Recovery +++")
+
+    condition = req["semantics"]["pre_condition"]
+    variables = req["semantics"]["variables"]
+    post_condition = req["semantics"]["post_condition"]
+
+    print(condition[1:-1])
+    print(post_condition[1: -1])
+
+    extract["system_recovery_condition"] = condition[1:-1]
+    extract["system_recovery_postcondition"] = post_condition[1: -1]
+
+    print(extract["system_recovery_condition"])
+    print(extract["system_recovery_postcondition"])
+
+    return
 
 
 def parse_hc_recovery1(req, extract):
-    pass
+    """ Parses a HC Recovery 1 requirement"""
+    print("+++ Parsing HC Recovery 1")
+    condition = req["semantics"]["pre_condition"]
+    post_condition = req["semantics"]["post_condition"]
+
+    # ([threshold]) => ([var] + [worst case reaction] [thresholdComparison])
+
+    #extract["hc_r_condition"] = condition[3:-3]
+
+
+    extract["hc1_recovery"] = post_condition.replace("=>", "->")
+
+    return
+
+
+    #extract_dict["hc1_recovery"]
 
 
 def parse_hc_recovery2(req, extract):
-    pass
+    """ Parse a HC Recovery 2 requirement"""
+    print("+++ Parsing HC Recovery 1")
+    condition = req["semantics"]["pre_condition"]
+    post_condition = req["semantics"]["post_condition"]
+
+    # ([threshold]) => ([var] + [worst case reaction] [thresholdComparison])
+
+    # extract["hc_r_condition"] = condition[3:-3]
+
+    extract["hc2_recovery"] = post_condition.replace("=>", "->")
+    return
 
 if __name__ == "__main__":
 
