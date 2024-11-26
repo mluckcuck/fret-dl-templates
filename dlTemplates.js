@@ -115,7 +115,7 @@ dlTemplates.push(ed.createFinalTemplateObject());
 // =========================== System Recovery (new)
 
 ed.newTemplate("template-rl-systemRecovery", "System Recovery");
-ed.templateSummary("After some disruption, the system should recover the threshold within the maxRecoveryTime. ");
+ed.templateSummary("After some disruption, the system should recover the threshold within the maxRecoveryTime. If you have failed to maintain the precondition and the time since that failure has exceeded the maximum allowed time to recover, the system's precondition should hold again.");
 
 ed.templateStructure("if [precondition] System shall always satisfy [time since disruption] > [maxRecoveryTime] => [threshold]");
 
@@ -134,7 +134,7 @@ ed.addOption("threshold", "var <= threshold", "var less than or equal to thresho
 ed.addOption("threshold", "var > threshold", "var greater than threshold");
 ed.addOption("threshold", "var >= threshold", "var greater than or equal to threshold");
 
-ed.addExample("[T <= TMAX][10][recoveryMax][T <= TMAX]");
+ed.addExample("[T <= TMAX][timeSinceFail][recoveryTimeMax][T <= TMAX]");
 dlTemplates.push(ed.createFinalTemplateObject());
 
 //=============================== Contract Recovery (was R4/recovery1)
