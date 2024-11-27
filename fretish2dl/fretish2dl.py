@@ -1,5 +1,7 @@
+from __future__ import annotations
 import argparse
 import json
+
 
 CHOOSE_ACTION_NAME = "RLChooseAction"
 NO_ACTION_NAME = "RLNoChange"
@@ -58,15 +60,16 @@ def build_output(extract_dict: dict, dl_spec: dict, system_name: str):
     if "system_resilience_condition" in extract_dict and extract_dict["system_resilience_condition"] is not None:
         threshold = extract_dict["system_resilience_condition"]
         dl_spec["system_property"] = threshold + " -> [" + system_name + "] " + threshold
-        print("system property ::= " + dl_spec["system_property"])
+
     elif "system_threshold_postcondition" in extract_dict and extract_dict["system_threshold_postcondition"] is not None:
         threshold = extract_dict["system_threshold_postcondition"]
         dl_spec["system_property"] = threshold + " -> [" + system_name + "] " + threshold
-        print("system property ::= " + dl_spec["system_property"])
+
     elif "system_recovery_condition" in extract_dict and extract_dict["system_recovery_condition" ] is not None:
-        threshold = extract_dict["system_recovery_condition"]
+        threshold = extract_dict["system_recovery_postcondition"]
         dl_spec["system_property"] = threshold + " -> [" + system_name + "] " + threshold
-        print("system property ::= " + dl_spec["system_property"])
+
+    print("system property ::= " + dl_spec["system_property"])
 
 
     ##########################
