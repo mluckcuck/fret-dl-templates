@@ -1,4 +1,4 @@
-// dlTempaltes
+// dlTemplates
 // Matt Luckcuck, University of Nottingham
 // 2024
 
@@ -8,7 +8,9 @@ const ed = require(fretTemplatesPath + 'templateEditor')
 function makeTemplates() {
 
 let dlTemplates = []
-//============================= No Change (was R2/threshold2)
+
+//============================= No Change 
+// Previous Names: R2, threshold2
 
 ed.newTemplate("template-rl-noChange", "RL No Change");
 ed.templateSummary("whenever the sample time is not reached (cRL < tS) the RL agent does not change the action");
@@ -29,7 +31,9 @@ ed.addExample("[clockTime][sampleTime][speed]")
 
 dlTemplates.push(ed.createFinalTemplateObject())
 
-// =========================== Choose Action (was R1/threshold2)
+// =========================== Choose Action 
+// Previous Names:  R1, threshold2
+
 ed.newTemplate("template-rl-chooseAction", "RL Choose Action");
 ed.templateSummary("Whenever the sample time is reached (cRL >= tS) \
 	the RL agent chooses and action that ensures that the worst case reaction of the overall system, \
@@ -54,7 +58,8 @@ ed.addExample("[clockTime][sampleTime][speed]")
 
 dlTemplates.push(ed.createFinalTemplateObject());
 
-// =========================== System Threshold (was R3/threshold3)
+// =========================== System Threshold 
+// Previous Names: R3, threshold3
 
 ed.newTemplate("template-rl-systemThreshold", "System Threshold");
 ed.templateSummary("Under a given precondition, the system should always satisfy the given threshold.");
@@ -68,10 +73,11 @@ ed.fieldDescription("threshold", "var ~ threshold");
 ed.addOption("threshold", "var < threshold", "var less than threshold.");
 ed.addOption("threshold", "var <= threshold", "var less than or equal to threshold.");
 
-ed.addExample("[T <= TMAX] [T <= TMAX]");
+ed.addExample("[Temp <= TMAX] [Temp <= TMAX]");
 dlTemplates.push(ed.createFinalTemplateObject());
 
-// =========================== Contract Threshold (also was R1/threshold1)
+// =========================== Contract Threshold 
+// Previous Names: R1, threshold1
 
 ed.newTemplate("template-rl-contractThreshold", "Hybrid Contract Threshold");
 ed.templateSummary("Whenever the sample time is reached (cRL >= tS), if the safety critical variable [var] is already within the threshold it should, \
@@ -102,17 +108,18 @@ ed.addOption("thresholdComparison", "> threshold", "greater than threshold");
 ed.addOption("thresholdComparison", ">= threshold", "greater than or equal to threshold");
 
 
-ed.fieldDescription("worst case reaction", "The worst-case reaction function. Usually this is defined as the realtion between the state, and action, and the recovery time.");
+ed.fieldDescription("worst case reaction", "The worst-case reaction function. Usually this is defined as the relation between the state, and action, and the recovery time.");
 ed.addOption("worst case reaction", "(state - action) * sampleTime", "Usual worst case reaction relationship.");
-ed.addOption("worst case reaction", "wcreaction", "Replace with worst-case reaction function.  Usually this is defined as the realtion between the state, and action, and the recovery time.");
+ed.addOption("worst case reaction", "wcreaction", "Replace with worst-case reaction function.  Usually this is defined as the relation between the state, and action, and the recovery time.");
 
-ed.addExample("whenever ([cRL] >= [tS]) RLAgent shall immediately satisfy ([T <= TMAX]) => ([T]+[(hMax-c)*ts] [<= TMAX])");
+ed.addExample("whenever ([cRL] >= [tS]) RLAgent shall immediately satisfy ([Temp <= TMAX]) => ([Temp]+[(maxHeating - cooling) * ts] [<= TMAX])");
 
 
 dlTemplates.push(ed.createFinalTemplateObject());
 
 
-// =========================== System Recovery (new)
+// =========================== System Recovery 
+// New
 
 ed.newTemplate("template-rl-systemRecovery", "System Recovery");
 ed.templateSummary("After some disruption, the system should recover the threshold within the maxRecoveryTime. If you have failed to maintain the precondition and the time since that failure has exceeded the maximum allowed time to recover, the system's precondition should hold again.");
@@ -134,10 +141,11 @@ ed.addOption("threshold", "var <= threshold", "var less than or equal to thresho
 ed.addOption("threshold", "var > threshold", "var greater than threshold");
 ed.addOption("threshold", "var >= threshold", "var greater than or equal to threshold");
 
-ed.addExample("[T <= TMAX][timeSinceFail][recoveryTimeMax][T <= TMAX]");
+ed.addExample("[Temp <= TMAX][timeSinceFail][maxRecoveryTime][Temp <= TMAX]");
 dlTemplates.push(ed.createFinalTemplateObject());
 
-//=============================== Contract Recovery (was R4/recovery1)
+// =============================== Contract Recovery 
+// Previous Names: R4, recovery1
 
 ed.newTemplate("template-rl-contractRecovery1", "Hybrid Contract Recovery 1")
 ed.templateSummary("If the threshold is violated (![threshold]), the RL agent recovers the variable to within safe limits under the worst-case reaction within the recovery time, which can be specified in [worst case recovery]");
@@ -164,18 +172,18 @@ ed.addOption("thresholdComparison", "<= threshold", "less than or equal to thres
 ed.addOption("thresholdComparison", "> threshold", "greater than threshold");
 ed.addOption("thresholdComparison", ">= threshold", "greater than or equal to threshold");
 
-ed.fieldDescription("worst case reaction", "The worst-case reaction function. Usually this is defined as the realtion between the state, and action, and the recovery time.");
+ed.fieldDescription("worst case reaction", "The worst-case reaction function. Usually this is defined as the relation between the state, and action, and the recovery time.");
 ed.addOption("worst case reaction", "(state - action) * sampleTime", "Usual worst case reaction relationship.");
-ed.addOption("worst case reaction", "wcreaction", "Replace with worst-case reaction function.  Usually this is defined as the realtion between the state, and action, and the recovery time.");
+ed.addOption("worst case reaction", "wcreaction", "Replace with worst-case reaction function.  Usually this is defined as the relation between the state, and action, and the recovery time.");
 
-ed.addExample("whenever ([cRL] >= [tS]) RLAgent shall immediately satisfy (![temp > TMAX]) => ([temp] + [worstCoolingtemp] [<= TMAX]).");
-//ed.addExample("whenever ([cRL] >= [tS]) RLAgent shall immediately satisfy (![temp > TMAX]) => ([hMax - c*((tDLast+tRMax) - temp]) [<= TMAX]).");
+ed.addExample("whenever ([cRL] >= [tS]) RLAgent shall immediately satisfy (![Temp > TMAX]) => ([(maxHeating - cooling) * (maxRecoveryTime - timeSinceFail) [<= TMAX])."); 
 
 dlTemplates.push(ed.createFinalTemplateObject())
 
 
 
-// =============================== Contract Recovery 2 (was R5/recovery2)
+// =============================== Contract Recovery 2
+// Previous Names: R5, recovery2
 
 ed.newTemplate("template-rl-contractRecovery2", "Hybrid Contract Recovery 2");
 ed.templateSummary("If the variable has not been violated, the safety critical variable remains within the threshold.");
@@ -203,17 +211,18 @@ ed.addOption("thresholdComparison", "<= threshold", "less than or equal to thres
 ed.addOption("thresholdComparison", "> threshold", "greater than threshold");
 ed.addOption("thresholdComparison", ">= threshold", "greater than or equal to threshold");
 
-ed.fieldDescription("worst case reaction", "The worst-case reaction function. Usually this is defined as the realtion between the state, and action, and the recovery time.");
+ed.fieldDescription("worst case reaction", "The worst-case reaction function. Usually this is defined as the relation between the state, and action, and the recovery time.");
 ed.addOption("worst case reaction", "(state - action) * sampleTime", "Usual worst case reaction relationship.");
-ed.addOption("worst case reaction", "wcreaction", "Replace with worst-case reaction function.  Usually this is defined as the realtion between the state, and action, and the recovery time.");
+ed.addOption("worst case reaction", "wcreaction", "Replace with worst-case reaction function.  Usually this is defined as the relation between the state, and action, and the recovery time.");
 
-ed.addExample("whenever ([cRL >= tS]) RLAgent shall immediately satisfy ([t <= TMAX]) => [t] + [(hMax - c) *tS)] [<= TMAX]");
+ed.addExample("whenever ([cRL >= tS]) RLAgent shall immediately satisfy ([Temp <= TMAX]) => [Temp] + [(maximumHeating - cooling) * tS)] [<= TMAX]");
 
 
 dlTemplates.push(ed.createFinalTemplateObject());
 
 
-// =========================== System Resilience (new)
+// =========================== System Resilience
+// Previous Names: New
 
 ed.newTemplate("template-rl-systemResilience", "System Resilience");
 ed.templateSummary("The system, should provide a degraded service, while maintaining the threshold. ");
@@ -235,10 +244,11 @@ ed.addOption("action", "worstCaseAction","Replace with the action for the worst-
 ed.fieldDescription("degradedService", "degradedService");
 ed.addOption("degradedService", "degradedService", "Replace with variable representing the degraded service.")
 
-ed.addExample("[T <= TMAX] [T <= TMAX] [action] [degradedService]");
+ed.addExample("[Temp <= TMAX] [Temp <= TMAX] [action] [degradedService]");
 dlTemplates.push(ed.createFinalTemplateObject());
 
-// =============================== Contract Resilience (was R6/resilience1)
+// =============================== Contract Resilience
+// Previous Names: R6, resilience1
 
 ed.newTemplate("template-rl-resilience1", "Hybrid Contract Resilience 1")
 ed.templateSummary("If the safety critical variable is more than a sufficient margin ([Delta suff]) within the threshold, facilitating a higher service level action, then an [action] greater or equal to [degradedService] may be selected, ensuring the threshold’s maintenance even under the worst-case reaction.");
@@ -255,9 +265,9 @@ ed.addOption("sampleTime", "sampleTime",  "Replace with sample time variable nam
 ed.fieldDescription("var", "The controlled variable.")
 ed.addOption("var", "controlledVariable", "replace with the controlled variable.")
 
-ed.fieldDescription("worst case reaction", "The worst-case reaction function. Usually this is defined as the realtion between the state, and action, and the recovery time.")
+ed.fieldDescription("worst case reaction", "The worst-case reaction function. Usually this is defined as the relation between the state, and action, and the recovery time.")
 ed.addOption("worst case reaction", "(state - action) * sampleTime", "Usual worst case reaction relationship.")
-ed.addOption("worst case reaction", "wcreaction", "Replace with worst-case reaction function.  Usually this is defined as the realtion between the state, and action, and the recovery time.")
+ed.addOption("worst case reaction", "wcreaction", "Replace with worst-case reaction function.  Usually this is defined as the relation between the state, and action, and the recovery time.")
 
 ed.fieldDescription("threshold", "var ~ Threshold");
 ed.addOption("threshold", "var < threshold", "var less than threshold");
@@ -285,9 +295,8 @@ ed.addExample("whenever ([cRL] >= [tS])  RLAgent shall immediately satisfy ([l] 
 dlTemplates.push(ed.createFinalTemplateObject())
 
 
-
-
-// =============================== Contract Resiliance 2 (was R7/resiliance2)
+// =============================== Contract Resilience 2
+// Previous Names: R7, resilience2
 
 ed.newTemplate("template-rl-contractResilience2", "Hybrid Contract Resilience 2");
 ed.templateSummary("If the safety critical variable is not a sufficient margin ([Delta suff]) within the threshold, then the RL agent defaults to a degraded service action ([action]=[degradedService]).");
@@ -327,6 +336,7 @@ ed.addExample("whenever ([cRL] >= [tS]) RLAgent shall immediately satisfy !([l] 
 
 dlTemplates.push(ed.createFinalTemplateObject())
 
+// ========================
 
 return dlTemplates
 }
