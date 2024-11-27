@@ -68,7 +68,7 @@
             "ftInfAUExpanded": "(G ((cRL < ts) -> maintain(c)))",
             "component": "RLAgent"
         },
-        "_id": "47fe8270-acd8-11ef-adc1-c5f7d01bce3b"
+        "_id": "b17f5dd0-ace4-11ef-adc1-c5f7d01bce3b"
     },
     {
         "reqid": "RLChooseAction",
@@ -139,7 +139,7 @@
             "ftInfAUExpanded": "(G ((cRL >= ts) -> choose(c)))",
             "component": "RLAgent"
         },
-        "_id": "47fe8271-acd8-11ef-adc1-c5f7d01bce3b"
+        "_id": "b17f5dd1-ace4-11ef-adc1-c5f7d01bce3b"
     },
     {
         "reqid": "SystemRecovery",
@@ -210,7 +210,7 @@
             "ftInfAUExpanded": "((G (((! (Temp <= TMax)) & (X (Temp <= TMax))) -> (X (G ((tSinceFail > tRecoveryMax) -> (Temp <= TMax)))))) & ((Temp <= TMax) -> (G ((tSinceFail > tRecoveryMax) -> (Temp <= TMax)))))",
             "component": "System"
         },
-        "_id": "47fe8272-acd8-11ef-adc1-c5f7d01bce3b"
+        "_id": "b17f5dd2-ace4-11ef-adc1-c5f7d01bce3b"
     },
     {
         "reqid": "HCRecovery1",
@@ -218,7 +218,7 @@
         "project": "[DL] TempControl Recovery",
         "rationale": "",
         "comments": "",
-        "fulltext": "whenever ( cRL  >=  ts ) RLAgent shall immediately satisfy (! Temp <= TMax ) => ( Temp  +  (hMax - c) * ts   <= TMax ) ",
+        "fulltext": "whenever ( cRL  >=  ts ) RLAgent shall immediately satisfy (! Temp <= TMax ) => ( Temp  +  (hMax - c) * (tRecoveryMax - tSinceFail)   <= TMax ) ",
         "semantics": {
             "type": "nasa",
             "scope": {
@@ -233,7 +233,9 @@
                 "Temp",
                 "TMax",
                 "hMax",
-                "c"
+                "c",
+                "tRecoveryMax",
+                "tSinceFail"
             ],
             "qualifier_word": "whenever",
             "pre_condition": "(( cRL >= ts ))",
@@ -251,12 +253,12 @@
                 39,
                 49
             ],
-            "post_condition": "(( ! Temp <= TMax ) => ( Temp + ( hMax - c ) * ts <= TMax ))",
+            "post_condition": "(( ! Temp <= TMax ) => ( Temp + ( hMax - c ) * ( tRecoveryMax - tSinceFail ) <= TMax ))",
             "responseTextRange": [
                 51,
-                117
+                142
             ],
-            "diagramVariables": "CC = <b><i>(( cRL >= ts ))</i></b>, Response = <b><i>(( ! Temp <= TMax ) => ( Temp + ( hMax - c ) * ts <= TMax ))</i></b>.",
+            "diagramVariables": "CC = <b><i>(( cRL >= ts ))</i></b>, Response = <b><i>(( ! Temp <= TMax ) => ( Temp + ( hMax - c ) * ( tRecoveryMax - tSinceFail ) <= TMax ))</i></b>.",
             "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: every point in the interval where <b><i>(( cRL >= ts ))</i></b> is true.\nREQUIRES: for every trigger, if trigger holds then RES also holds at the same time point.",
             "diagram": "_media/user-interface/examples/svgDiagrams/null_noTrigger_immediately_satisfaction.svg",
             "scope_mode_pt": "BAD_PT",
@@ -265,25 +267,25 @@
             "regular_condition_unexp_ft": "(cRL >= ts)",
             "regular_condition_SMV_pt": "(cRL >= ts)",
             "regular_condition_SMV_ft": "(cRL >= ts)",
-            "post_condition_unexp_pt": "((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * ts)) <= TMax))",
-            "post_condition_unexp_ft": "((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * ts)) <= TMax))",
-            "post_condition_SMV_pt": "((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * ts)) <= TMax))",
-            "post_condition_SMV_ft": "((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * ts)) <= TMax))",
+            "post_condition_unexp_pt": "((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * (tRecoveryMax - tSinceFail))) <= TMax))",
+            "post_condition_unexp_ft": "((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * (tRecoveryMax - tSinceFail))) <= TMax))",
+            "post_condition_SMV_pt": "((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * (tRecoveryMax - tSinceFail))) <= TMax))",
+            "post_condition_SMV_ft": "((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * (tRecoveryMax - tSinceFail))) <= TMax))",
             "ft_fetched": "(LAST V ($regular_condition_unexp_ft$ -> $post_condition_unexp_ft$))",
-            "ft": "(LAST V ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
+            "ft": "(LAST V ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * (tRecoveryMax - tSinceFail))) <= TMax))))",
             "pt_fetched": "(H ($regular_condition_unexp_pt$ -> $post_condition_unexp_pt$))",
-            "pt": "(H ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
+            "pt": "(H ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * (tRecoveryMax - tSinceFail))) <= TMax))))",
             "ptExpanded_fetched": "(H ($regular_condition_SMV_pt$ -> $post_condition_SMV_pt$))",
-            "ptExpanded": "(H ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
-            "CoCoSpecCode": "H(((cRL >= ts) => (not ((Temp <= TMax)) => ((Temp + ((hMax - c) * ts)) <= TMax))))",
+            "ptExpanded": "(H ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * (tRecoveryMax - tSinceFail))) <= TMax))))",
+            "CoCoSpecCode": "H(((cRL >= ts) => (not ((Temp <= TMax)) => ((Temp + ((hMax - c) * (tRecoveryMax - tSinceFail))) <= TMax))))",
             "ftExpanded_fetched": "(LAST V ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
-            "ftExpandedUnoptimized": "(LAST V ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
-            "ftExpanded": "(LAST V ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
+            "ftExpandedUnoptimized": "(LAST V ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * (tRecoveryMax - tSinceFail))) <= TMax))))",
+            "ftExpanded": "(LAST V ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * (tRecoveryMax - tSinceFail))) <= TMax))))",
             "ftInfAUExpanded_fetched": "(G ($regular_condition_SMV_ft$ -> $post_condition_SMV_ft$))",
-            "ftInfAUExpanded": "(G ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
+            "ftInfAUExpanded": "(G ((cRL >= ts) -> ((! (Temp <= TMax)) -> ((Temp + ((hMax - c) * (tRecoveryMax - tSinceFail))) <= TMax))))",
             "component": "RLAgent"
         },
-        "_id": "47fe8273-acd8-11ef-adc1-c5f7d01bce3b"
+        "_id": "b17f5dd3-ace4-11ef-adc1-c5f7d01bce3b"
     },
     {
         "reqid": "HCRecovery2",
@@ -356,6 +358,6 @@
             "ftInfAUExpanded": "(G ((cRL >= ts) -> ((Temp <= TMax) -> ((Temp + ((hMax - c) * ts)) <= TMax))))",
             "component": "RLAgent"
         },
-        "_id": "47fe8274-acd8-11ef-adc1-c5f7d01bce3b"
+        "_id": "b17f5dd4-ace4-11ef-adc1-c5f7d01bce3b"
     }
 ]
