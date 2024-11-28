@@ -1,5 +1,5 @@
 # FRET Dynamic Logic Templates
-#### Matt Luckcuck - March 2024
+#### Matt Luckcuck - November 2024
 
 The Dynamic Logic Templates for [FRET](https://github.com/NASA-SW-VnV/fret).
 
